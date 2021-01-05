@@ -1,0 +1,135 @@
+.homescreen-container{
+    display: flex;
+    flex-direction: column;
+    /* width: 100vw; */
+    /* max-width: 100vw; */
+    overflow-x: hidden;
+}
+
+
+/* First container */
+.homescreen-body-conatiner1{
+    display: flex;
+    flex-direction: row;
+    overflow-x: hidden;
+}
+
+.homescreen-text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    width: 45%;
+    overflow-wrap: break-word;
+    background: rgba(54, 136, 154, 0.13);
+    border-radius: 60%;
+    margin-top: 10px;
+    padding: 10px;
+    font-family: Nunito Sans;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 38px;
+    color: #000000;
+}
+
+.homescreen-image{
+    margin-top: 15px;
+}
+
+
+/* Second container */
+
+.homescreen-body-conatiner2{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.homescreen-text2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 55%;
+    /* margin-left: 5%; */
+    font-family: Nunito Sans;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 38px;
+    color: #000000;
+}
+
+
+.heading-container2{
+    font-family: Nunito Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 38px;
+    /* or 106% */
+    color: #000000;
+}
+
+.homescreen-image2{
+    /* width:45%; */
+}
+
+.homescreen-body-conatiner3{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    /* height:40%; */
+    font-family: Nunito Sans;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 38px;
+    color: #000000;
+}
+
+.homescren-image3{
+    /* width: 40%; */
+}
+
+.homescreen-text3{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* text-overflow: wrap; */
+    word-wrap: break-word;
+    width: 60%;
+}
+
+.homescreen-body-conatiner4{
+    display: flex;
+    flex-direction: row;
+    margin-top: 2%;
+    /* height:40%; */
+    font-family: Nunito Sans;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 38px;
+    color: #000000;
+}
+
+.homescren-image4{
+    /* width: 50%; */
+}
+
+.homescreen-text4{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+}
+
+.get-started{
+    font-weight: bold;
+    color: #FFFDFD;
+    background: #895B5B;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;    
+    width: fit-content;
+    padding: 5px;
+}

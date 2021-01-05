@@ -1,12 +1,22 @@
 import React from 'react';
-import {BrowserRouter as Router,Route, } from 'react-router-dom';
-
+import {Route,Switch } from 'react-router-dom';
+import HomeScreen from './components/homescreen/homescreen';
+import Products from './components/homescreen/product/products';
+import Resources from './components/homescreen/resources/resources';
+import Pricing from './components/homescreen/pricing/pricing';
 
 const App=()=>{
     return(
-        <div>
-            ReqM
-        </div>
+        <>
+        <Switch>
+            <Route exact path="/" component={HomeScreen}/>
+            <Route path="/product" component={Products}/>
+            <Route path="/resource" component={Resources}/>
+            <Route path="/pricing" component={Pricing}/>
+            <Route path="/signin"/>
+        </Switch>
+
+        </>
     );
 }
 

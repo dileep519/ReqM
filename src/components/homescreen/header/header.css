@@ -1,0 +1,52 @@
+.header-container{
+    display: flex;
+    flex-direction: row;
+    /* position: fixed; */
+    height: 10vh;
+    min-height: 80px;
+    box-shadow: 0px 8px 4px 0px rgba(0,0,0,0.2);
+    align-items: center;
+    padding:5px;
+}
+
+.reqm-container{
+    display: flex;
+    justify-content: flex-start;
+    font-family: Sunshine;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 48px;
+    line-height: 20px;
+    width: 60%;
+}
+
+.link-container{
+    display: flex;
+    width: 40%;
+    font-family: Nunito Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 20px;
+    color: #111010;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.link-inside-container{
+    text-decoration: none;
+    font-family: Nunito Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 20px;
+    color:#111010;
+}
+
+.link-container-button{
+    padding: 5px;
+    border: 2px solid #070707;
+    box-sizing: border-box;
+    border-radius: 10px;
+    
+}
