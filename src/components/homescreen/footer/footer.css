@@ -1,0 +1,14 @@
+.footer-container{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    padding-top:80px;
+    padding-bottom: 80px;
+    background: #AED8B2;
+}
+
+.footer-content{
+    display: flex;
+    flex-direction: column;
+}
