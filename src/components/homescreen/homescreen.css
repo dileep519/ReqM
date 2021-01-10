@@ -1,9 +1,6 @@
 .homescreen-container{
     display: flex;
     flex-direction: column;
-    /* width: 100vw; */
-    /* max-width: 100vw; */
-    overflow-x: hidden;
 }
 
 
@@ -11,7 +8,6 @@
 .homescreen-body-conatiner1{
     display: flex;
     flex-direction: row;
-    overflow-x: hidden;
 }
 
 .homescreen-text{
@@ -42,7 +38,7 @@
 .homescreen-body-conatiner2{
     display: flex;
     flex-direction: row;
-
+    margin:10px;
 }
 
 .homescreen-text2{
@@ -70,10 +66,6 @@
     color: #000000;
 }
 
-.homescreen-image2{
-    /* width:45%; */
-}
-
 .homescreen-body-conatiner3{
     display: flex;
     flex-direction: row;
@@ -85,37 +77,32 @@
     font-size: 24px;
     line-height: 38px;
     color: #000000;
-}
-
-.homescren-image3{
-    /* width: 40%; */
+    overflow: hidden;
+    margin:10px;
 }
 
 .homescreen-text3{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* text-overflow: wrap; */
     word-wrap: break-word;
-    width: 60%;
+    width: 55%;
 }
 
 .homescreen-body-conatiner4{
     display: flex;
     flex-direction: row;
     margin-top: 2%;
-    /* height:40%; */
     font-family: Nunito Sans;
     font-style: normal;
     font-weight: 300;
     font-size: 24px;
     line-height: 38px;
     color: #000000;
+    margin:10px;
+
 }
 
-.homescren-image4{
-    /* width: 50%; */
-}
 
 .homescreen-text4{
     display: flex;
@@ -127,7 +114,7 @@
 .get-started{
     font-weight: bold;
     color: #FFFDFD;
-    background: #895B5B;
+    background: #898B5B;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 15px;    
     width: fit-content;

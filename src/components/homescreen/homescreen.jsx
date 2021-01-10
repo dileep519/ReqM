@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './header/header';
 import Footer from './footer/footer';
 import './homescreen.css';
@@ -6,7 +6,6 @@ import image1 from '../../shared/images/Rectangle 159.png';
 import image2 from '../../shared/images/Rectangle 163.png';
 import image3 from '../../shared/images/Rectangle 165.png';
 import image4 from '../../shared/images/Rectangle 166.png';
-
 
 
 const HomeScreen=(props)=>{
