@@ -1,23 +1,15 @@
-import React from 'react';
-import {Route,Switch } from 'react-router-dom';
-import HomeScreen from './components/homescreen/homescreen';
-import Products from './components/homescreen/product/products';
-import Resources from './components/homescreen/resources/resources';
-import Pricing from './components/homescreen/pricing/pricing';
+import React, { Fragment } from 'react';
+import UserStory2 from './components/auth/UserStory2';
+import UserStory1 from './components/auth/UserStory1';
 
-const App=()=>{
-    return(
-        <>
-        <Switch>
-            <Route exact path="/" component={HomeScreen}/>
-            <Route path="/product" component={Products}/>
-            <Route path="/resource" component={Resources}/>
-            <Route path="/pricing" component={Pricing}/>
-            <Route path="/signin"/>
-        </Switch>
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import './App.css';
 
-        </>
-    );
-}
+const App = () => (
+  <div>
+    {/* <UserStory1 /> */}
+    <UserStory2 />
+  </div>
+);
 
 export default App;
