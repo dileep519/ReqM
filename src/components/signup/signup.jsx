@@ -1,51 +1,134 @@
 import React, { useState } from 'react';
 import validator  from 'validator';
-import alert from 'alert';
 import './signup.css';
+import {  NavLink } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import ProductSquad from '../../shared/images/Group 2004.png';
+import Business from '../../shared/images/Group 2005.png';
+import CustomerSupport from '../../shared/images/Group 2006.png';
+import bcrypt from 'bcryptjs';
+
 
 const Signup=()=>{
 
     const [name,setName]=useState(()=>"");
     const [email,setEmail]=useState();
     const [password,setPassword]=useState(()=>"")
+    const [verifyPassword,setVerifyPassword]=useState(()=>"");
+    const [selectedImg,setSelectedImg]=useState();
 
     const handleClick=(event)=>{
         if(event.target.id=='name'){
             setName(event.target.value);
         }else if(event.target.id=='email'){
-            
             setEmail(event.target.value);
-        }else{
+        }else if(event.target.id=='password'){
             setPassword(event.target.value);
+        }else{
+            setVerifyPassword(event.target.value);
         }
     }
 
-    const handleSignup=(e)=>{
-        const value=validator.isEmail(email);
-        if(!value){
-            alert('Please enter valid email');
+    const handleSignup=async (e)=>{
+        if(name && email && password && verifyPassword && selectedImg){
+
+            const value=validator.isEmail(email);
+            if(!value){
+                Swal.fire({
+                    title: 'Invalid Email',
+                    text: 'Please enter a valid email',
+                    icon: 'warning',
+                })
+                return;
+            }
+    
+            if(password!==verifyPassword){
+                Swal.fire({
+                    title: 'Passwords Mismatch',
+                    text: 'Passwords didn\'t match. Try again.',
+                    icon: 'warning',
+                })
+                return;
+            }
+            try{
+                let hashPwd=password;
+                hashPwd=await bcrypt.hash(password,10);
+            }catch(err){
+                Swal.fire({
+                    title:"Error",
+                    text:`${err}`,
+                    icon:'error'
+                })
+            }
+        }else{
+            if(!name || !email || !password || !verifyPassword){
+                Swal.fire({
+                    title: 'Warning',
+                    text: 'Please Fill All the fields',
+                    icon: 'warning',
+                })
+            }else{
+                Swal.fire({
+                    title:'Warning',
+                    text:'Please Select Avatar',
+                    icon:'warning'
+                })
+            }
         }
-        console.log("Out put after clicking signup is....",name);
-        console.log("Password",password);
-        console.log("email",email);
+    }
+
+    const handleImageClick=(e)=>{
+        setSelectedImg(e.target.id);
     }
 
     return(
+        <>
         <div className="signUpPage">
-                <span className="signUpProdName">ReqM !</span>
+            <div className="imageContainer">
+                <div className="firstHalfBody">
+                    <span className="companyName">ReqM !</span>
+                    <div className="optionsConatiner">
+                        <span>→ Add Members</span>
+                        <span>→ Create Requirements</span>
+                        <span>→ Triage & Monitor</span>
+                    </div>
+                </div>
+                <div className="firstHalfFooter">
+                    <NavLink to="/about" className="link-inside-container">About</NavLink>
+                    <NavLink to="/privacy" className="link-inside-container">Privacy</NavLink>
+                    <NavLink to="/terms" className="link-inside-container">Terms</NavLink>
+                </div>
+            </div>
+            <div className="signupContainer">
+                <span className="signupHeading">
+                    Signup
+                </span>
                 <div className="signUpSubContainer">
                     <div className="signUpInputContainer" >
-                        <span className="signUpInfo">Create New Account</span>
+                        <span className="inputLabel">Name</span>
                         <input id="name" onChange={handleClick} className="signupInput" type="text" placeholder="Name"  value={name}/>
+                        <span className="inputLabel">Email</span>
                         <input id="email" onChange={handleClick} className="signupInput" type="email" placeholder="Work EmailId" value={email}/>
-                        <input id="password" onChange={handleClick} className="signupInput" type="password" placeholder="Password" value={password}/>
+                        <span className="inputLabel">Password</span>
+                        <input id="password" onChange={handleClick} className="signupInput" type="password" placeholder="Enter password" value={password}/>
+                        <span className="inputLabel">Repeat Password</span>
+                        <input id="repassword" onChange={handleClick} className="signupInput" type="password" placeholder="Re-enter password" value={verifyPassword}/>
                     </div>
-                    <div>
+                    <div className="signUpImageContainer">
                         <span>Select your avatar</span>
+                        <div className="signupImages">
+                            <img id="product" style={selectedImg=='product'?{border:'1px solid black'}:{}} onClick={handleImageClick} src={ProductSquad} className="individualImage"/>
+                            <img id="business" style={selectedImg=='business'?{border:'1px solid black'}:{}} onClick={handleImageClick} src={Business} className="individualImage"/>
+                            <img id="customer" style={selectedImg=='customer'?{border:'1px solid black'}:{}} onClick={handleImageClick} src={CustomerSupport} className="individualImage"/>
+                        </div>
                     </div>
-                    <button className="signUpButton" onClick={handleSignup}>Sing Up</button>
+                    <div className="signUpContainer">
+                       <button className="signUpButton" onClick={handleSignup}>Sing Up</button>
+                    </div>
                 </div>
+            </div>
         </div>
+        </>
     );
 }
 

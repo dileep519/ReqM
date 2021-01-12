@@ -11,7 +11,7 @@
 .reqm-container{
     display: flex;
     justify-content: flex-start;
-    font-family: Sunshine;
+    font-family: 'Sunshiney', cursive;
     font-style: normal;
     font-weight: normal;
     font-size: 48px;
@@ -32,7 +32,7 @@
     justify-content: space-evenly;
 }
 
-.link-inside-container{
+.link-inside-container-header{
     text-decoration: none;
     font-family: Nunito Sans;
     font-style: normal;

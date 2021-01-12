@@ -9,14 +9,13 @@ import Signup from './components/signup/signup';
 const App=()=>{
     return(
         <>
-        <Switch>
-            <Route exact path="/" component={HomeScreen}/>
-            <Route path="/product" component={Products}/>
-            <Route path="/resource" component={Resources}/>
-            <Route path="/pricing" component={Pricing}/>
-            <Route path="/signin" component={Signup}/>
-        </Switch>
-
+            <Switch>
+                <Route exact path="/" component={HomeScreen}/>
+                <Route path="/product" component={Products}/>
+                <Route path="/resource" component={Resources}/>
+                <Route path="/pricing" component={Pricing}/>
+                <Route path="/signin" component={Signup}/>
+            </Switch>
         </>
     );
 }

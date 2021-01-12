@@ -5,8 +5,9 @@
     justify-content: space-evenly;
     padding-top:80px;
     padding-bottom: 80px;
-    background: #AED8B2;
+    background: #000000;
     width:100vw;
+    color: #FFFFFF;
 }
 
 .footer-content{
