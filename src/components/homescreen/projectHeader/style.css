@@ -1,0 +1,36 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 50px;
+}
+
+.header__title {
+  position: relative;
+  width: 492px;
+  height: 53px;
+  top: 22px;
+
+  font-family: Mulish;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 48px;
+  line-height: 15px;
+
+  color: #7459d9;
+}
+
+.user__info {
+  display: flex;
+  padding-right: 100px;
+  padding-top: 10px;
+  border-radius: 4px;
+}
+.img {
+  height: 40px;
+  padding-right: 10px;
+}
+
+.user__name {
+  font-family: Mulish;
+  padding-top: 10px;
+}

@@ -1,0 +1,12 @@
+.App {
+  position: relative;
+  display: flex;
+}
+
+.app__left {
+  position: relative;
+  left: 320px;
+  margin-left: 50px;
+  width: 1000px;
+  max-height: 700px;
+}
