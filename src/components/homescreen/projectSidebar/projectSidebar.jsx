@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router";
-import style from "./style.css";
+import { useHistory } from "react-router-dom";
+import "./style.css";
 import svgPath from "./svg";
 
 export default function Sidebar() {

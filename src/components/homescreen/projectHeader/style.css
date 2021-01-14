@@ -2,14 +2,20 @@
   display: flex;
   justify-content: space-between;
   padding-bottom: 50px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: white;
+  height: 30px;
 }
 
 .header__title {
+  padding-left: 40px;
   position: relative;
-  width: 492px;
-  height: 53px;
+  height: 50px;
   top: 22px;
-
   font-family: Mulish;
   font-style: normal;
   font-weight: 800;

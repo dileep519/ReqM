@@ -167,7 +167,11 @@ export default function Userstory() {
                 </div>
               </div>
             </div>
-            <input type="submit" className="btn btn-primary " value="Next" />
+            <div className="container">
+              <button className="btn btn-primary" onClick={onSubmit}>
+                Save
+              </button>
+            </div>
           </form>
         </div>
       </div>
