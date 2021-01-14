@@ -120,3 +120,13 @@
     width: fit-content;
     padding: 5px;
 }
+
+.link-inside-container-body{
+    text-decoration: none;
+    font-family: Nunito Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 20px;
+    color: #FFFDFD;
+}

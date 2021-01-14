@@ -6,6 +6,7 @@ import image1 from '../../shared/images/Rectangle 159.png';
 import image2 from '../../shared/images/Rectangle 163.png';
 import image3 from '../../shared/images/Rectangle 165.png';
 import image4 from '../../shared/images/Rectangle 166.png';
+import { NavLink } from 'react-router-dom';
 
 
 const HomeScreen=(props)=>{
@@ -15,7 +16,8 @@ const HomeScreen=(props)=>{
             <div className="homescreen-body-conatiner1">
                 <div className="homescreen-text">
                     <div>Collect your product requirements and keep track of your project with ease</div>
-                    <div className="get-started">Get started</div>
+                    {/* <div className="get-started">Get started</div> */}
+                    <div className="get-started"><NavLink to="/signup" className="link-inside-container-body">Get started</NavLink></div>
                 </div>
                 <div className="homescreen-image">
                     <img src={image1} />

@@ -7,6 +7,10 @@ import ProductSquad from '../../shared/images/Group 2004.png';
 import Business from '../../shared/images/Group 2005.png';
 import CustomerSupport from '../../shared/images/Group 2006.png';
 import bcrypt from 'bcryptjs';
+import { Base64 } from 'js-base64';
+import axios from 'axios';
+import { makeStyles } from '@material-ui/core/styles';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 
 const Signup=()=>{
@@ -16,6 +20,7 @@ const Signup=()=>{
     const [password,setPassword]=useState(()=>"")
     const [verifyPassword,setVerifyPassword]=useState(()=>"");
     const [selectedImg,setSelectedImg]=useState();
+    const [loader,setLoader]=useState(false);
 
     const handleClick=(event)=>{
         if(event.target.id=='name'){
@@ -51,8 +56,49 @@ const Signup=()=>{
                 return;
             }
             try{
+                setLoader(true);
                 let hashPwd=password;
                 hashPwd=await bcrypt.hash(password,10);
+                let code;
+                if(selectedImg=='business'){
+                    code=Base64.encode(Business);
+                }else if(selectedImg=='product'){
+                    code=Base64.encode(ProductSquad);
+                }else{
+                    code=Base64.encode(CustomerSupport);
+                }
+                axios.post("http://localhost:3001/api/user/register",{
+                    name,
+                    email,
+                    password:hashPwd,
+                    profilePhoto:code
+                }).then((res)=>{
+                    setLoader(false);
+                   if(res.data && res.data.message){
+                       setEmail("");
+                       setName("");
+                       setPassword("");
+                       setVerifyPassword("");
+                       setSelectedImg("");
+                       Swal.fire({
+                           title:'Success',
+                           text:`${res.data.message}`,
+                           icon:'success'
+                       })
+                }else{
+                       Swal.fire({
+                           title:"Error",
+                           text:`${res.data.error}`,
+                           icon:'error'
+                       })
+                   }
+                }).catch((err)=>{
+                    Swal.fire({
+                        title:"Error",
+                        text:`${err}`,
+                        icon:'error'
+                    })
+                })
             }catch(err){
                 Swal.fire({
                     title:"Error",
@@ -100,6 +146,7 @@ const Signup=()=>{
                 </div>
             </div>
             <div className="signupContainer">
+                {loader?<LinearProgress color="primary"/>:<></>}
                 <span className="signupHeading">
                     Signup
                 </span>
