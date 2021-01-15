@@ -43,9 +43,9 @@ const App = () => {
           <div className="right">
             <ProjectHeader />
             <Switch>
-              <Router
+              <Route
                 exact
-                path="/myprojects/:projectID/AddProject"
+                path="/myprojects/:projectID/projects/addUserStory"
                 component={Userstory}
               />
             </Switch>
