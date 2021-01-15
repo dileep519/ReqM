@@ -1,10 +1,16 @@
 import React, { useContext } from "react";
-import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
+import {
+  Route,
+  Switch,
+  BrowserRouter as Router,
+  Redirect,
+} from "react-router-dom";
 import HomeScreen from "./components/homescreen/homescreen";
 import Products from "./components/homescreen/product/products";
 import Resources from "./components/homescreen/resources/resources";
 import Pricing from "./components/homescreen/pricing/pricing";
 
+import Mysidebar from "./components/homescreen/myprojectSidebar/myprojectSidebar";
 import Sidebar from "./components/homescreen/projectSidebar/projectSidebar";
 import Header from "./components/homescreen/projectHeader/projectHeader";
 import Userstory from "./pages/userStory/userStory";
@@ -26,12 +32,24 @@ const App = () => {
         </Switch>
       ) : (
         <div className="wraper">
-          <Sidebar />
+          <Switch>
+            <Route exact path="/">
+              {" "}
+              <Redirect to="/myprojects" />
+            </Route>
+            <Route exact path="/myprojects" component={Mysidebar} />
+            <Route path="/myprojects/:projectID/" component={Sidebar} />
+          </Switch>
           <div className="right">
             <Header />
-            <div className="main__contain">
-              <Userstory />
-            </div>
+            <Switch>
+              <Router
+                exact
+                path="/myprojects/:projectID/AddProject"
+                component={Userstory}
+              />
+            </Switch>
+            {/*<Userstory /> */}
           </div>
         </div>
       )}

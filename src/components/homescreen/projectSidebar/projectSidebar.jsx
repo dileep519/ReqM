@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import "./style.css";
 import svgPath from "./svg";
 
@@ -7,17 +7,26 @@ export default function Sidebar() {
   const [path, setPath] = useState("/");
   let history = useHistory();
 
+  const courseID = useParams().projectID;
+  let generalPath = "/myprojects/" + courseID + "/";
+
   // it will give me the pathname
   let pathname = history.location.pathname;
 
+  if (pathname[pathname.length - 1] !== "/") pathname += "/";
+
+  //route path will give you the pathname
+  let routePath = pathname.split(generalPath)[1];
+  routePath = routePath.split("/")[0];
+
   // if the route = '/' then we will rerender it to projects
-  if (pathname === "/") {
-    history.push("/projects");
-    setPath("/projects");
+  if (pathname === generalPath) {
+    history.push(generalPath + "projects");
+    setPath("projects");
   }
 
   const handleClick = (e, paths) => {
-    history.push(paths);
+    history.push(generalPath + paths);
     setPath(paths);
   };
 
@@ -29,12 +38,12 @@ export default function Sidebar() {
          2. if the children attribute matches to the path then we will chage it to active color
          3. else to will change it to non active color
       */
-
+      // console.log(path);
+      if (path === "/") setPath(routePath);
       let header = document.getElementsByClassName("sidebar__items");
       let childs = header.item(0).children;
-
       for (let i = 0; i < childs.length; i++) {
-        if (childs.item(i).getAttribute("path") === pathname) {
+        if (childs.item(i).getAttribute("path") === path) {
           childs.item(i).style.color = "#DBDCE0";
           childs.item(i).style.backgroundColor = "#565659";
         } else {
@@ -61,30 +70,30 @@ export default function Sidebar() {
 
       <div className="sidebar__items" id="sidebar__div">
         <div
-          onClick={(e) => handleClick(e, "/projects")}
+          onClick={(e) => handleClick(e, "projects")}
           className="projects items"
-          path="/projects"
+          path="projects"
         >
           My Projects
         </div>
         <div
-          onClick={(e) => handleClick(e, "/watchlist")}
+          onClick={(e) => handleClick(e, "watchlist")}
           className="watchlist items"
-          path="/watchlist"
+          path="watchlist"
         >
           My Watchlist
         </div>
         <div
-          onClick={(e) => handleClick(e, "/assigned_req")}
+          onClick={(e) => handleClick(e, "assigned_req")}
           className="assigned_req items"
-          path="/assigned_req"
+          path="assigned_req"
         >
           Assigned Requirements
         </div>
         <div
-          onClick={(e) => handleClick(e, "/project_members")}
+          onClick={(e) => handleClick(e, "project_members")}
           className="project_members items"
-          path="/project_members"
+          path="project_members"
         >
           Project Members
         </div>

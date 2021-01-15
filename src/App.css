@@ -3,11 +3,3 @@
   grid-template-columns: 1fr 5.2fr;
   background-color: white;
 }
-
-.main__contain {
-  margin-left: 4em;
-  margin-right: 4em;
-  margin-top: 5em;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
-  padding: 1em;
-}

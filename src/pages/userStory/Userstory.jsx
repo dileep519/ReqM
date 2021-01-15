@@ -46,7 +46,7 @@ export default function Userstory() {
   }
 
   return (
-    <div>
+    <div className="userStory__container">
       <div className={className1}>
         <div>
           <form className="form" onSubmit={(e) => onSubmit(e)}>
