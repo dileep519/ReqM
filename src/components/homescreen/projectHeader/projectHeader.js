@@ -4,7 +4,7 @@ import "./style.css";
 // this logo will come from user
 import logo from "./logo192.png";
 
-export default function Header() {
+export default function ProjectHeader() {
   return (
     <div className="header">
       <div className="header__title">Mobisy Smart App</div>

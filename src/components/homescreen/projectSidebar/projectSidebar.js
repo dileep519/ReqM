@@ -3,7 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 import "./style.css";
 import svgPath from "./svg";
 
-export default function Sidebar() {
+export default function ProjectSidebar() {
   const [path, setPath] = useState("/");
   let history = useHistory();
 

@@ -11,8 +11,8 @@ import Resources from "./components/homescreen/resources/resources";
 import Pricing from "./components/homescreen/pricing/pricing";
 
 import Mysidebar from "./components/homescreen/myprojectSidebar/myprojectSidebar";
-import Sidebar from "./components/homescreen/projectSidebar/projectSidebar";
-import Header from "./components/homescreen/projectHeader/projectHeader";
+import ProjectSidebar from "./components/homescreen/projectSidebar/projectSidebar";
+import ProjectHeader from "./components/homescreen/projectHeader/projectHeader";
 import Userstory from "./pages/userStory/userStory";
 
 import { UserContext } from "./context/userContext/userContext";
@@ -38,10 +38,10 @@ const App = () => {
               <Redirect to="/myprojects" />
             </Route>
             <Route exact path="/myprojects" component={Mysidebar} />
-            <Route path="/myprojects/:projectID/" component={Sidebar} />
+            <Route path="/myprojects/:projectID/" component={ProjectSidebar} />
           </Switch>
           <div className="right">
-            <Header />
+            <ProjectHeader />
             <Switch>
               <Router
                 exact
