@@ -22,7 +22,6 @@ export default function Sidebar() {
   // if the route = '/' then we will rerender it to projects
   if (pathname === generalPath) {
     history.push(generalPath + "projects");
-    setPath("projects");
   }
 
   const handleClick = (e, paths) => {
