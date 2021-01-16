@@ -14,6 +14,8 @@ import Mysidebar from "./components/homescreen/myprojectSidebar/myprojectSidebar
 import ProjectSidebar from "./components/homescreen/projectSidebar/projectSidebar";
 import ProjectHeader from "./components/homescreen/projectHeader/projectHeader";
 import Userstory from "./pages/userStory/userStory";
+import NoParticularProject from "./components/homescreen/NoParticularProjectLeft/NoParticularProject";
+import DemoPageProject from "./components/homescreen/DemoPage/DemoPageProject";
 
 import { UserContext } from "./context/userContext/userContext";
 import "./App.css";
@@ -46,7 +48,7 @@ const App = () => {
               <Route
                 exact
                 path="/myprojects/:projectID/projects/addUserStory"
-                component={Userstory}
+                component={DemoPageProject}
               />
             </Switch>
             {/*<Userstory /> */}
