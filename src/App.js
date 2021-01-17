@@ -5,17 +5,25 @@ import {
   BrowserRouter as Router,
   Redirect,
 } from "react-router-dom";
+
+// components when user is null
 import HomeScreen from "./components/homescreen/homescreen";
 import Products from "./components/homescreen/product/products";
 import Resources from "./components/homescreen/resources/resources";
 import Pricing from "./components/homescreen/pricing/pricing";
 
+// components when user is not null
 import Mysidebar from "./components/homescreen/myprojectSidebar/myprojectSidebar";
 import ProjectSidebar from "./components/homescreen/projectSidebar/projectSidebar";
 import ProjectHeader from "./components/homescreen/projectHeader/projectHeader";
 import Userstory from "./pages/userStory/userStory";
 import NoParticularProject from "./components/homescreen/NoParticularProjectLeft/NoParticularProject";
-import DemoPageProject from "./components/homescreen/DemoPage/DemoPageProject";
+import CreateReq from "./components/homescreen/CreateReq/createReq";
+
+//importing all the pages when user is not null
+import AllProjectSummary from "./pages/allProjectSummery/allProjectSummery";
+import ParticularPageProject from "./pages/PraticularProjectHomepage/PraticularProjectHomepage";
+import ViewAll from "./pages/viewallSummery/ViewAll";
 
 import { UserContext } from "./context/userContext/userContext";
 import "./App.css";
@@ -33,7 +41,7 @@ const App = () => {
           <Route path="/signin" />
         </Switch>
       ) : (
-        <div className="wraper">
+        <div className="app__wraper">
           <Switch>
             <Route exact path="/">
               {" "}
@@ -42,20 +50,33 @@ const App = () => {
             <Route exact path="/myprojects" component={Mysidebar} />
             <Route path="/myprojects/:projectID/" component={ProjectSidebar} />
           </Switch>
-          <div className="right">
+          <div className="app__right">
             <ProjectHeader />
             <Switch>
-              <Route exact path="/myprojects" />
+              <Route exact path="/createnewproject" />
+              <Route exact path="/myprojects" component={AllProjectSummary} />
               <Route
                 exact
-                path="/myprojects/:projectID/projects/addUserStory"
+                path="/myprojects/:projectID/projects"
+                component={ParticularPageProject}
+              />
+              <Route
+                exact
+                path="/myprojects/:projectID/projects/addreq"
+                component={CreateReq}
+              />
+              <Route
+                exact
+                path="/myprojects/:projectID/projects/viewall"
+                component={ViewAll}
+              />
+              <Route
+                exact
+                path="/myprojects/:projectID/projects/adduserstory"
                 component={Userstory}
               />
-              <Route
-                exact
-                path="/myprojects/:projectID/projects/:storyID"
-                component={DemoPageProject}
-              />
+
+              <Route exact path="/myprojects/:projectID/projects/:storyID" />
             </Switch>
             {/*<Userstory /> */}
           </div>

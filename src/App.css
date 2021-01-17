@@ -1,4 +1,4 @@
-.wraper {
+.app__wraper {
   display: grid;
   grid-template-columns: 1fr 5.2fr;
   background-color: white;

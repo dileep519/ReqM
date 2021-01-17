@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { GoDiffAdded } from "react-icons/go";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { IconContext } from "react-icons";
@@ -8,7 +8,7 @@ import "bootstrap/dist/css/bootstrap.css";
 
 import "./style.css";
 
-const DemoPageProject = () => {
+const ParticularPageProject = () => {
   const [users, setUser] = useState([]);
 
   useEffect(() => {
@@ -29,9 +29,23 @@ const DemoPageProject = () => {
   };
   const hStyle = { color: "grey" };
 
+  // to redirect the route
+  let history = useHistory();
+
+  // clicking pushing the history of adduserstory
+  const pushHistory = () => {
+    history.push("/myprojects/:projectID/projects/addreq");
+  };
+
+  // clicking pushing the history of viewall
+
+  const pushHistoryView = () => {
+    history.push("/myprojects/:projectID/projects/viewall");
+  };
+
   return (
     <div className="container mt-3">
-      <div className="box">
+      <div className="box" onClick={pushHistory}>
         <h2 style={hStyle}>
           <IconContext.Provider
             value={{
@@ -62,7 +76,7 @@ const DemoPageProject = () => {
       <div className="table-data">
         <div className="box">
           <h5 className="box2">Recent Requirements</h5>
-          <h6 style={hStyle} className="box1">
+          <h6 style={hStyle} className="box1" onClick={pushHistoryView}>
             View All
           </h6>
         </div>
@@ -97,4 +111,4 @@ const DemoPageProject = () => {
   );
 };
 
-export default DemoPageProject;
+export default ParticularPageProject;

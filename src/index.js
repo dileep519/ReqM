@@ -6,10 +6,12 @@ import "./index.css";
 import { UserContextProvider } from "./context/userContext/userContext";
 
 ReactDOM.render(
-  <Router>
-    <UserContextProvider>
-      <App />
-    </UserContextProvider>
-  </Router>,
+  <React.StrictMode>
+    <Router>
+      <UserContextProvider>
+        <App />
+      </UserContextProvider>
+    </Router>
+  </React.StrictMode>,
   document.getElementById("root")
 );
