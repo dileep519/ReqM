@@ -1,0 +1,68 @@
+.main-div {
+  margin-left: 15px;
+}
+
+.react-icons {
+  vertical-align: center;
+  background-color: #eb4e2f;
+  cursor: pointer;
+  border: none;
+  margin-right: 5px;
+}
+.box {
+  cursor: pointer;
+  background-color: white;
+  position: relative;
+  width: 30%;
+  margin-left: auto;
+  right: 20px;
+}
+.box1 {
+  cursor: pointer;
+  background-color: white;
+  position: relative;
+  width: 30%;
+  margin-left: auto;
+  right: 75px;
+  color: gray;
+  display: inline-block;
+}
+.box2 {
+  background-color: white;
+  position: relative;
+  margin-left: auto;
+  right: 330px;
+  display: inline-block;
+}
+.text-cordinate {
+  position: relative;
+  top: 1%;
+  font-size: 23px;
+  color: grey;
+  left: 40px;
+}
+.content-align {
+  position: relative;
+  left: 130px;
+}
+
+.content-align-p {
+  position: relative;
+  left: 130px;
+  color: red;
+}
+.card-container {
+  display: inline-block;
+  margin-left: 25px;
+  margin: 30px;
+  padding: 5px;
+  width: 300px;
+  height: 150px;
+  overflow: hidden;
+  box-shadow: 0px 0px 10px -5px;
+}
+
+.table-data {
+  margin-top: 30px;
+  margin-left: 20px;
+}

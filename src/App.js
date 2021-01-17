@@ -45,10 +45,16 @@ const App = () => {
           <div className="right">
             <ProjectHeader />
             <Switch>
+              <Route exact path="/myprojects" />
               <Route
                 exact
                 path="/myprojects/:projectID/projects/addUserStory"
                 component={Userstory}
+              />
+              <Route
+                exact
+                path="/myprojects/:projectID/projects/:storyID"
+                component={DemoPageProject}
               />
             </Switch>
             {/*<Userstory /> */}
