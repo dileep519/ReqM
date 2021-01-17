@@ -31,16 +31,17 @@ const ParticularPageProject = () => {
 
   // to redirect the route
   let history = useHistory();
-
+  let path = history.location.pathname;
+  if (path[path.length - 1] !== "/") path += "/";
   // clicking pushing the history of adduserstory
   const pushHistory = () => {
-    history.push("/myprojects/:projectID/projects/addreq");
+    history.push(path + "addreq");
   };
 
   // clicking pushing the history of viewall
 
   const pushHistoryView = () => {
-    history.push("/myprojects/:projectID/projects/viewall");
+    history.push(path + "viewall");
   };
 
   return (

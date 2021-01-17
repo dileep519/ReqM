@@ -4,12 +4,17 @@ import NoteAddSharpIcon from "@material-ui/icons/NoteAddSharp";
 import { useHistory } from "react-router-dom";
 export default function CreateReq() {
   let history = useHistory();
+
+  let path = history.location.pathname;
+
+  if (path[path.length - 1] !== "/") path += "/";
+  console.log(path);
   const pushStory = () => {
-    history.push("/myprojects/:projectID/projects/addreq/adduserstory");
+    history.push(path + "adduserstory");
   };
 
   const pushJTBD = () => {
-    history.push("/myprojects/:projectID/projects/addreq/jtbd");
+    history.push(path + "jtbd");
   };
 
   return (
