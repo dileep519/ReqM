@@ -24,7 +24,7 @@ import CreateReq from "./components/homescreen/CreateReq/createReq";
 
 //importing all the pages when user is not null
 import AllProjectSummary from "./pages/allProjectSummery/allProjectSummery";
-import ParticularPageProject from "./pages/PraticularProjectHomepage/PraticularProjectHomepage";
+import ParticularPageProject from "./pages/ParticularProjectHomepage/ParticularProjectHomepage";
 import ViewAll from "./pages/viewallSummery/ViewAll";
 import JTBD from "./pages/JTBD/JTBD";
 
