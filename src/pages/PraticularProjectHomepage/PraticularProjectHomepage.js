@@ -59,20 +59,20 @@ const ParticularPageProject = () => {
         </h2>
       </div>
       <h3>&nbsp; &nbsp; Requirement Summary</h3>
-
-      <div className="card-container">
-        <p className="text-cordinate">Requirements Logded</p>
-        <h3 className="content-align">20</h3>
+      <div className="card__container__wraper">
+        <div className="card-container">
+          <p className="text-cordinate">Requirements Logded</p>
+          <h3 className="content-align">20</h3>
+        </div>
+        <div className="card-container">
+          <p className="text-cordinate">Priority Requirement</p>
+          <h3 className="content-align-p">2</h3>
+        </div>
+        <div className="card-container">
+          <p className="text-cordinate">Assigned To Me</p>
+          <h3 className="content-align">0</h3>
+        </div>
       </div>
-      <div className="card-container">
-        <p className="text-cordinate">Priority Requirement</p>
-        <h3 className="content-align-p">2</h3>
-      </div>
-      <div className="card-container">
-        <p className="text-cordinate">Assigned To Me</p>
-        <h3 className="content-align">0</h3>
-      </div>
-
       <div className="table-data">
         <div className="box">
           <h5 className="box2">Recent Requirements</h5>
