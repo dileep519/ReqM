@@ -18,12 +18,15 @@ import ProjectSidebar from "./components/homescreen/projectSidebar/projectSideba
 import ProjectHeader from "./components/homescreen/projectHeader/projectHeader";
 import Userstory from "./pages/userStory/userStory";
 import NoParticularProject from "./components/homescreen/NoParticularProjectLeft/NoParticularProject";
+
+// resue this when there is no req left in project and he created first time project
 import CreateReq from "./components/homescreen/CreateReq/createReq";
 
 //importing all the pages when user is not null
 import AllProjectSummary from "./pages/allProjectSummery/allProjectSummery";
 import ParticularPageProject from "./pages/PraticularProjectHomepage/PraticularProjectHomepage";
 import ViewAll from "./pages/viewallSummery/ViewAll";
+import JTBD from "./pages/JTBD/JTBD";
 
 import { UserContext } from "./context/userContext/userContext";
 import "./App.css";
@@ -72,7 +75,13 @@ const App = () => {
               />
               <Route
                 exact
-                path="/myprojects/:projectID/projects/adduserstory"
+                path="/myprojects/:projectID/projects/addreq/jtbd"
+                component={JTBD}
+              />
+
+              <Route
+                exact
+                path="/myprojects/:projectID/projects/addreq/adduserstory"
                 component={Userstory}
               />
 

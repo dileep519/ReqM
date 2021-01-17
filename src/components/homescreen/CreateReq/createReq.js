@@ -5,8 +5,13 @@ import { useHistory } from "react-router-dom";
 export default function CreateReq() {
   let history = useHistory();
   const pushStory = () => {
-    history.push("/myprojects/:projectID/projects/adduserstory");
+    history.push("/myprojects/:projectID/projects/addreq/adduserstory");
   };
+
+  const pushJTBD = () => {
+    history.push("/myprojects/:projectID/projects/addreq/jtbd");
+  };
+
   return (
     <div className="DemoPage__project">
       <div className="NoProject__title">
@@ -18,7 +23,7 @@ export default function CreateReq() {
           <div className="NoProject__addStory">Click to add User Story</div>
         </div>
         <div className="NoProject__right">
-          <NoteAddSharpIcon />
+          <NoteAddSharpIcon onClick={pushJTBD} />
           <div className="NoProject__req">Click to add job To Be Done</div>
         </div>
       </div>
