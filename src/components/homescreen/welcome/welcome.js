@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./welcome.css";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import Modal from "@material-ui/core/Modal";
@@ -13,6 +13,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { withStyles } from "@material-ui/core/styles";
 import Swal from "sweetalert2";
 import validator from "validator";
+import { UserContext } from "./../../../context/userContext/userContext";
 function Welcome() {
   const [projname, setProjName] = useState("");
   const [orgname, setOrgName] = useState("");
@@ -21,7 +22,7 @@ function Welcome() {
   const [input, showInput] = useState(true);
   const [checked, setChecked] = useState(false);
   //this initialises the state to contain empty array
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useContext(UserContext).user;
   // const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   //const [modalStyle] = useState(getModalStyle);

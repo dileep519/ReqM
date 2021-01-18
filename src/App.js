@@ -18,7 +18,7 @@ import ProjectSidebar from "./components/homescreen/projectSidebar/projectSideba
 import ProjectHeader from "./components/homescreen/projectHeader/projectHeader";
 import Userstory from "./pages/userStory/userStory";
 import NoParticularProject from "./components/homescreen/NoParticularProjectLeft/NoParticularProject";
-import Welcome from "./components/homescreen/welcome/welcome";
+//import Welcome from "./components/homescreen/welcome/welcome";
 
 // resue this when there is no req left in project and he created first time project
 import CreateReq from "./components/homescreen/CreateReq/createReq";
@@ -32,18 +32,19 @@ import JTBD from "./pages/JTBD/JTBD";
 import { UserContext } from "./context/userContext/userContext";
 import "./App.css";
 import ViewSummery from "./pages/viewSummery/viewSummery";
+import Signin from "./components/signin/signin";
 const App = () => {
   const [user, setUser] = useContext(UserContext).user;
   return (
     <Router>
+      {/* <Route exact path="/welcome" component={Welcome} /> */}
       {user === null ? (
         <Switch>
           <Route exact path="/" component={HomeScreen} />
-
           <Route path="/product" component={Products} />
           <Route path="/resource" component={Resources} />
           <Route path="/pricing" component={Pricing} />
-          <Route path="/signin" />
+          <Route path="/signin" component={Signin} />
         </Switch>
       ) : (
         <div className="app__wraper">
@@ -56,41 +57,43 @@ const App = () => {
             <Route path="/myprojects/:projectID/" component={ProjectSidebar} />
           </Switch>
           <div className="app__right">
-            <ProjectHeader />
             <Switch>
-              <Route exact path="/createnewproject" />
-              <Route exact path="/myprojects" component={AllProjectSummary} />
-              <Route
-                exact
-                path="/myprojects/:projectID/projects"
-                component={ParticularPageProject}
-              />
-              <Route
-                exact
-                path="/myprojects/:projectID/projects/addreq"
-                component={CreateReq}
-              />
+              {/*<Route exact path="/createnewproject" /> */}
+              <Route exact path="/myprojects">
+                <ProjectHeader />
+                <AllProjectSummary />
+              </Route>
+              <Route exact path="/myprojects/:projectID/projects">
+                <ProjectHeader />
+                <ParticularPageProject />
+              </Route>
+              <Route exact path="/myprojects/:projectID/projects/addreq">
+                <ProjectHeader />
+                <CreateReq />
+              </Route>
               <Route
                 exact
                 path="/myprojects/:projectID/projects/viewall/:storyID"
-                component={ViewSummery}
-              />
-              <Route
-                exact
-                path="/myprojects/:projectID/projects/viewall"
-                component={ViewAll}
-              />
-              <Route
-                exact
-                path="/myprojects/:projectID/projects/addreq/jtbd"
-                component={JTBD}
-              />
+              >
+                <ProjectHeader />
+                <ViewSummery />
+              </Route>
+              <Route exact path="/myprojects/:projectID/projects/viewall">
+                <ProjectHeader />
+                <ViewAll />
+              </Route>
+              <Route exact path="/myprojects/:projectID/projects/addreq/jtbd">
+                <ProjectHeader />
+                <JTBD />
+              </Route>
 
               <Route
                 exact
                 path="/myprojects/:projectID/projects/addreq/adduserstory"
-                component={Userstory}
-              />
+              >
+                <ProjectHeader />
+                <Userstory />
+              </Route>
             </Switch>
             {/*<Userstory /> */}
           </div>

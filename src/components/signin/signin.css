@@ -1,0 +1,123 @@
+.parentConatiner {
+  display: flex;
+  flex-direction: column;
+  background: url("./Sign In.png");
+  height: 100vh;
+  width: 100vw;
+  /* background-repeat: no-repeat; */
+  background-size: 100% 100%;
+}
+
+.headerContainerSignIn {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  height: 10%;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height, or 150% */
+
+  color: #ffffff;
+}
+
+.signinReqm {
+  color: #ffffff;
+  margin-left: 0px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.signinOptions {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.signinBody {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  height: 90%;
+}
+
+.signinBox {
+  display: flex;
+  flex-direction: column;
+  height: 60%;
+  width: 30%;
+  background: #ffffff;
+  opacity: 0.98;
+  box-shadow: 0px 30px 60px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  min-width: fit-content;
+}
+
+.signInContent {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  min-height: fit-content;
+}
+
+.signInHeading {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 110%;
+  /* or 40px */
+
+  color: #282c40;
+}
+
+.singinMessage {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 110%;
+  /* or 18px */
+
+  color: rgba(40, 44, 64, 0.6);
+}
+
+.rememberAndPassword {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 110%;
+  /* identical to box height, or 15px */
+
+  color: #f0ae4b;
+}
+
+.singinButton {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 110%;
+  /* or 17px */
+
+  color: #ffffff;
+
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.15);
+  margin-top: 20px;
+  border: none;
+  outline: none;
+  padding: 10px;
+  background: linear-gradient(180deg, #ffb648 0%, #fdc064 100%);
+  border-radius: 10px;
+  margin-top: 40px;
+}
