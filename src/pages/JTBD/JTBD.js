@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import "./style.css";
+import Modal from "react-modal";
+import Button from "@material-ui/core/Button";
+
 export default function JTBD() {
+  const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({
     description: "",
     persona: "",
@@ -49,6 +53,14 @@ export default function JTBD() {
 
   return (
     <div className="userStory__container">
+      <Modal isOpen={open} className="viewSummery__modal">
+        <div className="viewSummery">
+          <p>Requirement Title has been succesfully captured !!</p>
+          <Button variant="outlined" color="primary">
+            View Summery
+          </Button>
+        </div>
+      </Modal>
       <div className={className1}>
         <div>
           <form className="form" onSubmit={(e) => onSubmit(e)}>
