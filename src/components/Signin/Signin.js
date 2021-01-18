@@ -3,10 +3,12 @@ import validator  from 'validator';
 import Swal from 'sweetalert2';
 import bcrypt from 'bcryptjs';
 import './signin.css';
-
+import axios from 'axios';
+import {useHistory} from 'react-router-dom'
 
 const Signin=()=>{
 
+    var history = useHistory();
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
 
@@ -18,11 +20,32 @@ const Signin=()=>{
         }
     }
 
-    const handleSignIn=async ()=>{
+    const handleSignIn=async () => {
         if(validator.isEmail(email)){
-            let hashPwd=password;
-            hashPwd=await bcrypt.hash(password,10);
-            console.log(password);
+            // console.log(password);
+            axios.post("http://localhost:3001/api/user/login",{
+                email,
+                password,
+            }).then((res) => {
+                if(res.data && res.data.message) {
+                    setEmail("");
+                    setPassword("");
+                    history.push('/');
+                }
+                else {
+                   Swal.fire({
+                       title:"Error",
+                       text:`${res.data.error}`,
+                       icon:'error'
+                   });
+                }
+            }).catch((err)=>{
+                Swal.fire({
+                    title:"Error",
+                    text:`${err}`,
+                    icon:'error'
+                })
+            });
         }else{
             Swal.fire({
                 title:"Email Invalid",
@@ -30,6 +53,10 @@ const Signin=()=>{
                 icon:'warning'
             })
         }
+        // let hashPwd=password;
+        // hashPwd=await bcrypt.hash(password,10);
+        
+
     }
 
     return(
