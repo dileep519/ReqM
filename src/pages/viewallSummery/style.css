@@ -1,7 +1,9 @@
 .main-div {
   margin-left: 15px;
 }
-
+.story__title {
+  cursor: pointer;
+}
 .react-icons {
   vertical-align: center;
   background-color: #eb4e2f;

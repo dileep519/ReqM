@@ -106,7 +106,7 @@ const ParticularPageProject = () => {
             </tr>
           </thead>
           <tbody>
-            {data.slice(0, data.length).map((user, index) => (
+            {data.slice(0, 3).map((user, index) => (
               <tr key={index}>
                 <th scope="row">Req: {index + 1}</th>
                 <td>{user.storyDetails.storyTitle}</td>

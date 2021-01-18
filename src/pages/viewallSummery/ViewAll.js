@@ -1,28 +1,38 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import { GoDiffAdded } from "react-icons/go";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { IconContext } from "react-icons";
 import "bootstrap/dist/css/bootstrap.css";
+import { UserContext } from "./../../context/userContext/userContext";
 
 import "./style.css";
 
 const ViewAll = () => {
-  const [users, setUser] = useState([]);
-
+  const [user, setUser] = useContext(UserContext).user;
+  const [data, setData] = useState([]);
+  let history = useHistory();
+  let projectID = useParams().projectID;
   useEffect(() => {
-    loadUsers();
-  }, []);
-
-  const loadUsers = async () => {
-    const result = await axios.get("http://localhost:3003/users");
-    setUser(result.data.reverse());
+    getuserStory();
+  }, [projectID]);
+  const getuserStory = async () => {
+    let api =
+      "http://localhost:3001/api/story/get-stories/projectId/" + `${projectID}`;
+    axios
+      .get(api, {
+        headers: { authtoken: `${user}` },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setData(res.data);
+      });
   };
-
-  const deleteUser = async (id) => {
-    await axios.delete(`http://localhost:3003/users/${id}`);
-    loadUsers();
+  const historyView = (id) => {
+    let path = history.location.pathname;
+    if (path[path.length - 1] !== "/") path += "/";
+    history.push(path + id);
   };
   const obj = {
     view: false,
@@ -44,14 +54,14 @@ const ViewAll = () => {
             </tr>
           </thead>
           <tbody>
-            {users.slice(0, 10).map((user, index) => (
-              <tr>
+            {data.slice(0, data.length).map((user, index) => (
+              <tr key={index} onClick={() => historyView(user._id)}>
                 <th scope="row">Req: {index + 1}</th>
-                <td>{user.title}</td>
-                <td>{user.date}</td>
-                <td className="text-danger">{user.priority}</td>
+                <td className="story__title">{user.storyDetails.storyTitle}</td>
+                <td>{100}</td>
+                <td className="text-danger">{user.storyDetails.priority}</td>
                 <td>
-                  <Link class=" mr-2" to={`/users/${user.id}`}>
+                  <Link className=" mr-2" to={`/users/${user.id}`}>
                     <BiDotsVerticalRounded />
                   </Link>
                 </td>

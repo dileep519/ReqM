@@ -30,6 +30,7 @@ import JTBD from "./pages/JTBD/JTBD";
 
 import { UserContext } from "./context/userContext/userContext";
 import "./App.css";
+import ViewSummery from "./pages/viewSummery/viewSummery";
 const App = () => {
   const [user, setUser] = useContext(UserContext).user;
   return (
@@ -70,6 +71,11 @@ const App = () => {
               />
               <Route
                 exact
+                path="/myprojects/:projectID/projects/viewall/:storyID"
+                component={ViewSummery}
+              />
+              <Route
+                exact
                 path="/myprojects/:projectID/projects/viewall"
                 component={ViewAll}
               />
@@ -84,8 +90,6 @@ const App = () => {
                 path="/myprojects/:projectID/projects/addreq/adduserstory"
                 component={Userstory}
               />
-
-              <Route exact path="/myprojects/:projectID/projects/:storyID" />
             </Switch>
             {/*<Userstory /> */}
           </div>
