@@ -53,13 +53,9 @@ export default function Userstory() {
       action_provided_by: providedBy,
       action_received_mode: mode,
       priority: "low",
+      details: details,
     };
-    // console.log(user);
-    const headers = {
-      "Content-Type": "application/json",
-      authtoken:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDA1Mzg2ZjA0YzFhZDA2ZTA5MTdkMDEiLCJpYXQiOjE2MTA5NjA4Mjh9.icerpE37UniB_mJmUBchXO1-l4m6PNoDofwus0Wxgeo",
-    };
+
     //console.log(story_Details);
     const data = {
       project_id: projectID,
