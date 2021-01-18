@@ -74,10 +74,6 @@ const AllProjectSummary = () => {
         </div>
       ))}
 
-      <div className="card-container box-p">
-        <p className="text-cordinate-p">Aviation Labs</p>
-      </div>
-
       <div className="card-container">
         <div className="box-b">
           <h2 style={hStyle}>

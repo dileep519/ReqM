@@ -48,7 +48,7 @@ const ParticularPageProject = () => {
   let path = history.location.pathname;
   if (path[path.length - 1] !== "/") path += "/";
   // clicking pushing the history of adduserstory
-  const pushHistory = () => {
+  const pushReq = () => {
     history.push(path + "addreq");
   };
 
@@ -66,7 +66,7 @@ const ParticularPageProject = () => {
 
   return (
     <div className="container mt-3">
-      <div className="box">
+      <div className="box" onClick={pushReq}>
         <h2 style={hStyle}>
           <IconContext.Provider
             value={{
