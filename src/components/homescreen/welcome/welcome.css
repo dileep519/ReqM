@@ -1,0 +1,269 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Sunshiney&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* background: rgba(28, 28, 28, 0.84); */
+}
+
+body {
+  color: white;
+}
+ul {
+  list-style: none;
+}
+/*Container
+**************************************************************/
+.wrapper {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.wrapper > * {
+  padding: 20px;
+}
+
+/*Header
+***************************************************************/
+.page-header {
+  background: white;
+  color: black;
+}
+.logo {
+  background-color: white;
+  font-family: Sunshiney;
+  font-size: 48px;
+  font-style: normal;
+}
+.page-header nav {
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.page-header ul {
+  background: white;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  font-family: Manrope;
+  order: 1;
+  margin-top: 15px;
+}
+.page-header ul li {
+  background-color: white;
+}
+.page-header ul li:not(:last-child) {
+  padding-right: 15px;
+}
+/*Main
+********************************************************************/
+.page-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  min-height: 350px;
+  /*welcomepage\public\bg.png
+C:\Users\hp\Desktop\reactprojects\welcomepage\public\bg.png*/
+  background: url("./bg.png") no-repeat center / cover;
+  background-blend-mode: luminosity;
+  color: var(--main-white-color);
+}
+.page-main div {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+.page-main div h1 {
+  letter-spacing: 3px;
+  font-family: Manrope;
+}
+.page-main div h3 {
+  letter-spacing: 2px;
+  color: #c2acff;
+  font-family: Mulish;
+}
+form {
+  width: 350px;
+  line-height: 1.6;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+}
+form label {
+  font-family: Manrope;
+  font-size: 13px;
+  font-weight: 100;
+  margin-top: 55px;
+}
+.fieldinput {
+  padding: 12px 6px 0px 0px;
+  margin-top: 3px;
+  width: 100%;
+  background: none;
+  letter-spacing: 1px;
+  border: none;
+  border-bottom: 2px solid white;
+}
+.fieldinput:focus {
+  outline: none;
+  border: none;
+  letter-spacing: 1px;
+  border-bottom: 2px solid white;
+}
+#amu {
+  margin-top: 20px;
+  display: flex;
+  align-items: flex-start;
+}
+#amu span {
+  margin-left: 25px;
+}
+.btn-continue {
+  background-color: #e24429;
+  margin-top: 20px;
+  color: white;
+  font-size: 24px;
+  align-self: center;
+  padding: 5px 80px;
+  border: none;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+button:focus {
+  outline: none;
+}
+button:hover {
+  cursor: pointer;
+}
+.dialog-container {
+  left: 35%;
+  top: 35%;
+  padding: 25px;
+  opacity: 0.98;
+
+  position: absolute;
+  width: 500px;
+  background: white;
+  background-color: white;
+  /*border:2px solid #000;*/
+  /* boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),*/
+  display: flex;
+  flex-direction: column;
+  color: black;
+  border-radius: 4px;
+}
+.dialog-container:focus {
+  outline: none;
+}
+.dialog-container h1 {
+  margin-top: 15px;
+  font-family: Mulish;
+  font-size: 16px;
+  background: white;
+  line-height: 24px;
+  letter-spacing: 1px;
+  text-align: left;
+}
+.input-container {
+  background: white;
+  display: flex;
+  flex-direction: column;
+}
+.input-container span {
+  font-size: 13px;
+  line-height: 14.3px;
+  font-style: normal;
+  font-weight: 600;
+  font-family: Manrope;
+  background: white;
+}
+.input-container input {
+  border: none;
+  background: white;
+  border-bottom: 1px solid #858585;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  padding-top: 12px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+.input-container input:focus {
+  outline: none;
+}
+.add-container {
+  display: flex;
+  background-color: white;
+  margin-top: 20px;
+  align-items: flex-start;
+  border: none;
+}
+.add-container #addicon {
+  background-color: white;
+  color: #e24429;
+  height: 30px;
+  width: 35px;
+}
+.add-container span {
+  font-family: Mulish;
+  font-size: 13px;
+  color: black;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.05em;
+  text-align: center;
+  margin-left: px;
+  background: white;
+}
+.dialog-container #switch {
+  display: flex;
+  justify-content: space-between;
+}
+.dialog-container #switch span {
+  font-family: Manrope;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 1px;
+  text-align: left;
+  color: #ffffff;
+}
+.btn-switch {
+  color: #e24429;
+  background-color: white;
+}
+.btn-save {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+.save-btn {
+  align-items: flex-end;
+  align-self: flex-end;
+  background-color: #e24429;
+  margin-top: 20px;
+  color: white;
+  padding: 5px 30px;
+  border: none;
+  font-family: Mulish;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 24px;
+  letter-spacing: 0.05em;
+  text-align: center;
+
+  cursor: pointer;
+  border-radius: 20px;
+}

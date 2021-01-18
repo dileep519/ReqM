@@ -18,6 +18,7 @@ import ProjectSidebar from "./components/homescreen/projectSidebar/projectSideba
 import ProjectHeader from "./components/homescreen/projectHeader/projectHeader";
 import Userstory from "./pages/userStory/userStory";
 import NoParticularProject from "./components/homescreen/NoParticularProjectLeft/NoParticularProject";
+import Welcome from "./components/homescreen/welcome/welcome";
 
 // resue this when there is no req left in project and he created first time project
 import CreateReq from "./components/homescreen/CreateReq/createReq";
