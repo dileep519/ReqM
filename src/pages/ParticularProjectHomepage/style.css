@@ -4,6 +4,9 @@
 .card__container__wraper {
   display: flex;
 }
+.story__title {
+  cursor: pointer;
+}
 .react-icons {
   vertical-align: center;
   background-color: #eb4e2f;

@@ -57,10 +57,16 @@ const ParticularPageProject = () => {
   const pushHistoryView = () => {
     history.push(path + "viewall");
   };
-  console.log(data);
+  const historyView = (id) => {
+    let path = history.location.pathname;
+    if (path[path.length - 1] !== "/") path += "/";
+    path += "viewall/";
+    history.push(path + id);
+  };
+
   return (
     <div className="container mt-3">
-      <div className="box" onClick={pushHistory}>
+      <div className="box">
         <h2 style={hStyle}>
           <IconContext.Provider
             value={{
@@ -109,7 +115,12 @@ const ParticularPageProject = () => {
             {data.slice(0, 3).map((user, index) => (
               <tr key={index}>
                 <th scope="row">Req: {index + 1}</th>
-                <td>{user.storyDetails.storyTitle}</td>
+                <td
+                  onClick={() => historyView(user._id)}
+                  className="story__title"
+                >
+                  {user.storyDetails.storyTitle}
+                </td>
                 <td>{100}</td>
                 <td className="text-danger">{user.storyDetails.priority}</td>
                 <td>

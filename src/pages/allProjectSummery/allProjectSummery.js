@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { GoDiffAdded } from "react-icons/go";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { IconContext } from "react-icons";
@@ -13,6 +13,7 @@ import "./style.css";
 const AllProjectSummary = () => {
   const [user, setUser] = useContext(UserContext).user;
   const [data, setData] = useState([]);
+  let history = useHistory();
   useEffect(() => {
     getdata();
   }, []);
@@ -20,16 +21,19 @@ const AllProjectSummary = () => {
   const getdata = async () => {
     let api = "http://localhost:3001/api/project/get-projects";
     axios.get(api, { headers: { authtoken: `${user}` } }).then((res) => {
-      console.log(res.data);
+      //console.log(res.data);
       setData(res.data);
     });
   };
-
-  console.log("hello");
-  const loadUsers = async () => {
-    // const result = await axios.get("http://localhost:3003/users");
-    // setUser(result.data.reverse());
+  const pushHistory = (id) => {
+    let path = history.location.pathname;
+    if (path[path.length - 1] !== "/") path += "/";
+    history.push(path + id);
   };
+  //  const loadUsers = async () => {
+  //    // const result = await axios.get("http://localhost:3003/users");
+  //    // setUser(result.data.reverse());
+  //  };
 
   const deleteUser = async (id) => {
     // await axios.delete(`http://localhost:3003/users/${id}`);
@@ -59,12 +63,21 @@ const AllProjectSummary = () => {
 
       <h3>&nbsp; &nbsp; Active Project Spaces</h3>
       {/* this thing will come from map and we need to click onClick on that*/}
-      <div className="card-container box-p1">
-        <p className="text-cordinate-p">Mobisy Mobile App</p>
-      </div>
+      {}
+      {data.slice(0, data.length).map((item, index) => (
+        <div
+          className="card-container box-p1"
+          key={index}
+          onClick={() => pushHistory(item._id)}
+        >
+          <p className="text-cordinate-p">{item.projectName}</p>
+        </div>
+      ))}
+
       <div className="card-container box-p">
         <p className="text-cordinate-p">Aviation Labs</p>
       </div>
+
       <div className="card-container">
         <div className="box-b">
           <h2 style={hStyle}>

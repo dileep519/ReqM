@@ -55,9 +55,14 @@ const ViewAll = () => {
           </thead>
           <tbody>
             {data.slice(0, data.length).map((user, index) => (
-              <tr key={index} onClick={() => historyView(user._id)}>
+              <tr key={index}>
                 <th scope="row">Req: {index + 1}</th>
-                <td className="story__title">{user.storyDetails.storyTitle}</td>
+                <td
+                  className="story__title"
+                  onClick={() => historyView(user._id)}
+                >
+                  {user.storyDetails.storyTitle}
+                </td>
                 <td>{100}</td>
                 <td className="text-danger">{user.storyDetails.priority}</td>
                 <td>
