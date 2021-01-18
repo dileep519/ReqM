@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./style.css";
 import Modal from "react-modal";
 import Button from "@material-ui/core/Button";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+
+import { UserContext } from "./../../context/userContext/userContext";
+
 export default function Userstory() {
   const [open, setOpen] = useState(false);
-
+  const [user, setUser] = useContext(UserContext).user;
+  const [data, setData] = useState();
   const [formData, setFormData] = useState({
     title: "",
     role: "",
@@ -34,13 +40,47 @@ export default function Userstory() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  let projectID = useParams().projectID;
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    let api = "http://localhost:3001/api/story/add-story";
+    let story_Details = {
+      story_title: title,
+      as_a: role,
+      action_requirement: want,
+      action_output: soThat,
+      action_assigned_to: assignTo,
+      action_provided_by: providedBy,
+      action_received_mode: mode,
+      priority: "low",
+    };
+    // console.log(user);
+    const headers = {
+      "Content-Type": "application/json",
+      authtoken:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDA1Mzg2ZjA0YzFhZDA2ZTA5MTdkMDEiLCJpYXQiOjE2MTA5NjA4Mjh9.icerpE37UniB_mJmUBchXO1-l4m6PNoDofwus0Wxgeo",
+    };
+    //console.log(story_Details);
+    const data = {
+      project_id: projectID,
+      story_details: story_Details,
+    };
+    try {
+      let p = await axios.post(api, data, {
+        headers: {
+          authtoken: `${user}`,
+        },
+      });
+      console.log(p);
+      // /console.log(message);
+    } catch (e) {
+      console.log("hello");
+      console.log(e);
+    }
   };
   let className1 = "story_1";
   let className2 = "story_2";
-  console.log(story);
+  //console.log(story);
   if (story === 1) {
     className1 += " " + "active";
     className2 += " " + "nonactive";
@@ -61,7 +101,7 @@ export default function Userstory() {
       </Modal>
       <div className={className1}>
         <div>
-          <form className="form" onSubmit={(e) => onSubmit(e)}>
+          <form className="form">
             <div className="container has-box">
               <div className="form-group">
                 <h2>User Story role</h2>

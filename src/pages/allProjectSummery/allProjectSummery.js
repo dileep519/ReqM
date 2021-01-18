@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { GoDiffAdded } from "react-icons/go";
@@ -6,23 +6,34 @@ import { BiDotsVerticalRounded } from "react-icons/bi";
 import { IconContext } from "react-icons";
 //import "bootstrap/dist/css/bootstrap.css";
 
+import { UserContext } from "./../../context/userContext/userContext";
+
 import "./style.css";
 
 const AllProjectSummary = () => {
-  const [users, setUser] = useState([]);
-
+  const [user, setUser] = useContext(UserContext).user;
+  const [data, setData] = useState([]);
   useEffect(() => {
-    loadUsers();
+    getdata();
   }, []);
 
+  const getdata = async () => {
+    let api = "http://localhost:3001/api/project/get-projects";
+    axios.get(api, { headers: { authtoken: `${user}` } }).then((res) => {
+      console.log(res.data);
+      setData(res.data);
+    });
+  };
+
+  console.log("hello");
   const loadUsers = async () => {
-    const result = await axios.get("http://localhost:3003/users");
-    setUser(result.data.reverse());
+    // const result = await axios.get("http://localhost:3003/users");
+    // setUser(result.data.reverse());
   };
 
   const deleteUser = async (id) => {
-    await axios.delete(`http://localhost:3003/users/${id}`);
-    loadUsers();
+    // await axios.delete(`http://localhost:3003/users/${id}`);
+    // loadUsers();
   };
   const obj = {
     view: false,

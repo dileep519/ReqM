@@ -1,29 +1,43 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { GoDiffAdded } from "react-icons/go";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { IconContext } from "react-icons";
 import "bootstrap/dist/css/bootstrap.css";
 
 import "./style.css";
+import { UserContext } from "./../../context/userContext/userContext";
 
 const ParticularPageProject = () => {
-  const [users, setUser] = useState([]);
-
+  const [user, setUser] = useContext(UserContext).user;
+  const [data, setData] = useState([]);
+  let projectID = useParams().projectID;
   useEffect(() => {
-    loadUsers();
-  }, []);
+    getuserStory();
+  }, [projectID]);
 
-  const loadUsers = async () => {
-    const result = await axios.get("http://localhost:3003/users");
-    setUser(result.data);
+  const getuserStory = async () => {
+    let api =
+      "http://localhost:3001/api/story/get-stories/projectId/" + `${projectID}`;
+    axios
+      .get(api, {
+        headers: { authtoken: `${user}` },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setData(res.data);
+      });
+  };
+  const PriorityHigh = (data) => {
+    let cnt = 0;
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].storyDetails.priority === "high") cnt++;
+    }
+
+    return cnt;
   };
 
-  const deleteUser = async (id) => {
-    await axios.delete(`http://localhost:3003/users/${id}`);
-    loadUsers();
-  };
   const obj = {
     view: false,
   };
@@ -43,7 +57,7 @@ const ParticularPageProject = () => {
   const pushHistoryView = () => {
     history.push(path + "viewall");
   };
-
+  console.log(data);
   return (
     <div className="container mt-3">
       <div className="box" onClick={pushHistory}>
@@ -63,11 +77,11 @@ const ParticularPageProject = () => {
       <div className="card__container__wraper">
         <div className="card-container">
           <p className="text-cordinate">Requirements Logded</p>
-          <h3 className="content-align">20</h3>
+          <h3 className="content-align">{data.length}</h3>
         </div>
         <div className="card-container">
           <p className="text-cordinate">Priority Requirement</p>
-          <h3 className="content-align-p">2</h3>
+          <h3 className="content-align-p">{PriorityHigh(data)}</h3>
         </div>
         <div className="card-container">
           <p className="text-cordinate">Assigned To Me</p>
@@ -92,12 +106,12 @@ const ParticularPageProject = () => {
             </tr>
           </thead>
           <tbody>
-            {users.slice(0, 3).map((user, index) => (
-              <tr>
+            {data.slice(0, data.length).map((user, index) => (
+              <tr key={index}>
                 <th scope="row">Req: {index + 1}</th>
-                <td>{user.title}</td>
-                <td>{user.date}</td>
-                <td className="text-danger">{user.priority}</td>
+                <td>{user.storyDetails.storyTitle}</td>
+                <td>{100}</td>
+                <td className="text-danger">{user.storyDetails.priority}</td>
                 <td>
                   <Link class=" mr-2" to={`/users/${user.id}`}>
                     <BiDotsVerticalRounded />
