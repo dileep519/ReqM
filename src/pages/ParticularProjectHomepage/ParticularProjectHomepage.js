@@ -101,8 +101,8 @@ const ParticularPageProject = () => {
             View All
           </h6>
         </div>
-        <table class="table border shadow center mt-0">
-          <thead class="thead-light">
+        <table className="table border shadow center mt-0">
+          <thead className="thead-light">
             <tr>
               <th scope="col">Requirement</th>
               <th scope="col">Title</th>
@@ -124,7 +124,7 @@ const ParticularPageProject = () => {
                 <td>{100}</td>
                 <td className="text-danger">{user.storyDetails.priority}</td>
                 <td>
-                  <Link class=" mr-2" to={`/users/${user.id}`}>
+                  <Link className=" mr-2" to={`/users/${user.id}`}>
                     <BiDotsVerticalRounded />
                   </Link>
                 </td>
