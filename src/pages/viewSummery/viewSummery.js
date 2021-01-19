@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "./../../context/userContext/userContext";
 import "./style.css";
@@ -9,7 +9,9 @@ export default function ViewSummery() {
   const [data, setData] = useState({});
 
   const [user, setUser] = useContext(UserContext).user;
-
+  let history = useHistory();
+  let path = history.location.pathname;
+  if (path[path.length - 1] !== "/") path += "/";
   //console.log(projectID);
   //console.log(storyID);
 
@@ -63,7 +65,14 @@ export default function ViewSummery() {
         </div>
       </div>
       <div className="div__button">
-        <div className="BUTTON">Edit</div>
+        <div
+          className="BUTTON"
+          onClick={() => {
+            history.push(path + "edit");
+          }}
+        >
+          Edit
+        </div>
       </div>
     </div>
   );

@@ -28,6 +28,7 @@ import AllProjectSummary from "./pages/allProjectSummery/allProjectSummery";
 import ParticularPageProject from "./pages/ParticularProjectHomepage/ParticularProjectHomepage";
 import ViewAll from "./pages/viewallSummery/ViewAll";
 import JTBD from "./pages/JTBD/JTBD";
+import EditUserstory from "./pages/editUserstory/editUserStory";
 
 import { UserContext } from "./context/userContext/userContext";
 import "./App.css";
@@ -78,6 +79,15 @@ const App = () => {
                 <ProjectHeader />
                 <ViewSummery />
               </Route>
+
+              <Route
+                exact
+                path="/myprojects/:projectID/projects/viewall/:storyID/edit"
+              >
+                <ProjectHeader />
+                <EditUserstory />
+              </Route>
+
               <Route exact path="/myprojects/:projectID/projects/viewall">
                 <ProjectHeader />
                 <ViewAll />
