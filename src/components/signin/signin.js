@@ -30,6 +30,10 @@ const Signin = () => {
         })
         .then((res) => {
           if (res.data && res.data.message) {
+            localStorage.setItem(
+              "auth_token",
+              JSON.stringify(res.data.auth_token)
+            );
             setUser(res.data.auth_token);
             //console.log(res.data);
             setEmail("");
