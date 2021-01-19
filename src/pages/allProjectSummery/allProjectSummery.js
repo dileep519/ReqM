@@ -21,7 +21,7 @@ const AllProjectSummary = () => {
   const getdata = async () => {
     let api = "http://localhost:3001/api/project/get-projects";
     axios.get(api, { headers: { authtoken: `${user}` } }).then((res) => {
-      //console.log(res.data);
+      console.log(res.data);
       setData(res.data);
     });
   };
@@ -50,7 +50,7 @@ const AllProjectSummary = () => {
 
       <div className="card-container">
         <p className="text-cordinate">Active Project Spaces</p>
-        <h3 className="content-align">02</h3>
+        <h3 className="content-align">{data.length}</h3>
       </div>
       <div className="card-container">
         <p className="text-cordinate">Requirement Logded</p>

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import "./style.css";
 import axios from "axios";
 // this logo will come from user
-import logo from "./logo192.png";
+import logo from "./logo.png";
 import { useParams } from "react-router-dom";
 import { UserContext } from "./../../../context/userContext/userContext";
 
@@ -27,13 +27,14 @@ export default function ProjectHeader() {
     });
   };
 
+  let user_Name = JSON.parse(localStorage.getItem("Name"));
   return (
     <div className="header">
       <div className="header__title">{title}</div>
       <div className="user__info">
         <img className="img" src={logo} alt={logo} />
 
-        <div className="user__name"> Devjoyti</div>
+        <div className="user__name"> {user_Name}</div>
       </div>
     </div>
   );

@@ -34,6 +34,7 @@ const Signin = () => {
               "auth_token",
               JSON.stringify(res.data.auth_token)
             );
+            localStorage.setItem("Name", JSON.stringify(res.data.Name));
             setUser(res.data.auth_token);
             //console.log(res.data);
             setEmail("");

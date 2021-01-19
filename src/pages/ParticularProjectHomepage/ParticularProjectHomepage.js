@@ -13,9 +13,9 @@ const ParticularPageProject = () => {
   const [user, setUser] = useContext(UserContext).user;
   const [data, setData] = useState([]);
   let projectID = useParams().projectID;
-  useEffect(() => {
-    getuserStory();
-  }, [projectID]);
+  //  useEffect(() => {
+  //    getuserStory();
+  //  }, [projectID]);
 
   const getuserStory = async () => {
     let api =
@@ -29,10 +29,11 @@ const ParticularPageProject = () => {
         setData(res.data);
       });
   };
+  getuserStory();
   const PriorityHigh = (data) => {
     let cnt = 0;
     for (let i = 0; i < data.length; i++) {
-      if (data[i].storyDetails.priority === "high") cnt++;
+      if (data[i].storyDetails.priority === "High") cnt++;
     }
 
     return cnt;
