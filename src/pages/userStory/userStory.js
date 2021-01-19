@@ -10,9 +10,8 @@ import { UserContext } from "./../../context/userContext/userContext";
 export default function Userstory() {
   const [open, setOpen] = useState(false);
   const [user, setUser] = useContext(UserContext).user;
-  const [data, setData] = useState();
   const [id, setID] = useState();
-
+  const [priority, setPriority] = useState("Low");
   const [formData, setFormData] = useState({
     title: "",
     role: "",
@@ -23,7 +22,6 @@ export default function Userstory() {
     watchlist: "",
     providedBy: "",
     mode: "",
-    priority: "",
   });
   const [story, setStory] = useState(1);
   const {
@@ -36,7 +34,6 @@ export default function Userstory() {
     watchlist,
     providedBy,
     mode,
-    priority,
   } = formData;
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -54,7 +51,7 @@ export default function Userstory() {
       action_assigned_to: assignTo,
       action_provided_by: providedBy,
       action_received_mode: mode,
-      priority: "low",
+      priority: priority,
       details: details,
     };
 
@@ -218,11 +215,23 @@ export default function Userstory() {
                 <br></br>
                 <div>
                   <b>Priority</b>
-                  <input type="radio" name="priority" />
+                  <input
+                    type="radio"
+                    name="priority"
+                    onClick={() => setPriority("High")}
+                  />
                   <b>High</b>
-                  <input type="radio" name="priority" />
+                  <input
+                    type="radio"
+                    name="priority"
+                    onClick={() => setPriority("Medium")}
+                  />
                   <b>Medium</b>
-                  <input type="radio" name="priority" />
+                  <input
+                    type="radio"
+                    name="priority"
+                    onClick={() => setPriority("Low")}
+                  />
                   <b>Low</b>
                 </div>
               </div>
