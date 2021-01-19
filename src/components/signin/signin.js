@@ -35,6 +35,8 @@ const Signin = () => {
               JSON.stringify(res.data.auth_token)
             );
             localStorage.setItem("Name", JSON.stringify(res.data.Name));
+            localStorage.setItem("email", JSON.stringify(res.data.email));
+            //console.log(res.data);
             setUser(res.data.auth_token);
             //console.log(res.data);
             setEmail("");

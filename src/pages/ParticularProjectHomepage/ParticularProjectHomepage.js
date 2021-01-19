@@ -12,6 +12,8 @@ import { UserContext } from "./../../context/userContext/userContext";
 const ParticularPageProject = () => {
   const [user, setUser] = useContext(UserContext).user;
   const [data, setData] = useState([]);
+  const [assignedStory, setAssignedStory] = useState(0);
+  const [assignedjtbd, setAssignjtbd] = useState(0);
   let projectID = useParams().projectID;
   //  useEffect(() => {
   //    getuserStory();
@@ -29,6 +31,31 @@ const ParticularPageProject = () => {
         setData(res.data);
       });
   };
+  const getAssignStory = () => {
+    let email = JSON.parse(localStorage.getItem("email"));
+    let API = "http://localhost:3001/api/story/get-all-assigned";
+    const Cre = {
+      email: email,
+    };
+    axios.post(API, Cre, { headers: { authtoken: `${user}` } }).then((res) => {
+      console.log(res.data);
+      setAssignedStory(res.data.length);
+    });
+  };
+
+  const getAssignjtbd = () => {
+    let email = JSON.parse(localStorage.getItem("email"));
+    let API = "http://localhost:3001/api/jtbd/get-all-assigned";
+    const Cre = {
+      email: email,
+    };
+    axios.post(API, Cre, { headers: { authtoken: `${user}` } }).then((res) => {
+      console.log(res.data);
+      setAssignjtbd(res.data.length);
+    });
+  };
+  getAssignjtbd();
+  getAssignStory();
   getuserStory();
   const PriorityHigh = (data) => {
     let cnt = 0;
@@ -92,7 +119,7 @@ const ParticularPageProject = () => {
         </div>
         <div className="card-container">
           <p className="text-cordinate">Assigned To Me</p>
-          <h3 className="content-align">0</h3>
+          <h3 className="content-align">{assignedStory + assignedjtbd}</h3>
         </div>
       </div>
       <div className="table-data">
