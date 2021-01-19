@@ -12,11 +12,19 @@ export default function ProjectHeader() {
   let projectID = useParams().projectID;
   useEffect(() => {
     getTitle();
-  }, [projectID]);
+  }, []);
 
   const getTitle = async () => {
     let api = "http://localhost:3001/api/project/get-projects";
-    axios.get(api, { headers: { authtoken: `${user}` } }).then((res) => {});
+    axios.get(api, { headers: { authtoken: `${user}` } }).then((res) => {
+      let data = res.data;
+
+      for (let i = 0; i < data.length; i++) {
+        if (data[i]._id === projectID) {
+          setTitle(data[i].projectName);
+        }
+      }
+    });
   };
 
   return (
