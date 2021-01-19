@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, withRouter } from "react-router-dom";
 import { GoDiffAdded } from "react-icons/go";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { IconContext } from "react-icons";
@@ -93,4 +93,4 @@ const AllProjectSummary = () => {
   );
 };
 
-export default AllProjectSummary;
+export default withRouter(AllProjectSummary);
