@@ -81,7 +81,7 @@ const ViewAll = () => {
                 >
                   {user.storyDetails.storyTitle}
                 </td>
-                <td>{100}</td>
+                <td>{user.storyDetails.date}</td>
                 <td className="text-danger">{user.storyDetails.priority}</td>
                 <td>
                   <Link className=" mr-2" to={`/users/${user.id}`}>

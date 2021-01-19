@@ -39,6 +39,8 @@ export default function ViewSummery() {
   return (
     <div className="viewSummery">
       <div className="view__story view__part1">
+        <div className="userstory__header">Description</div>
+        <div className="userstory__data">{data.description}</div>
         <div className="userstory__header">Persona</div>
         <div className="userstory__data">{data.persona}</div>
         <div className="userstory__header">Situation</div>
