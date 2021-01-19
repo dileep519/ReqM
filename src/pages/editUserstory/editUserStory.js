@@ -79,7 +79,7 @@ export default function EditUserstory() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    let api = "http://localhost:3001/api/story/add-story";
+    let api = "http://localhost:3001/api/story/update-story/" + `${storyID}`;
     let story_Details = {
       story_title: title,
       as_a: role,
@@ -99,7 +99,7 @@ export default function EditUserstory() {
       story_details: story_Details,
     };
     try {
-      let p = await axios.post(api, data, {
+      let p = await axios.put(api, data, {
         headers: {
           authtoken: `${user}`,
         },
