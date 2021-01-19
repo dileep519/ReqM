@@ -1,0 +1,53 @@
+.viewSummery {
+  margin-left: 4em;
+  margin-right: 4em;
+  margin-top: 2em;
+
+  padding: 1em;
+}
+
+.view__story {
+  border-radius: 5px;
+  width: 726px;
+  margin: 10px;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 1px 2px rgba(3, 3, 3, 0.5);
+}
+
+.userstory__header {
+  font-size: 13px;
+  font-family: Mulish;
+  color: gray;
+}
+.userstory__data {
+  margin: 5px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+}
+.userstory__data__priority {
+  color: #bb2cff;
+}
+.div__button {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+.BUTTON {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin-top: 10px;
+  width: 126px;
+  height: 38px;
+
+  /* Light / Indigo */
+
+  background: #7459d9;
+  border-radius: 4px;
+}

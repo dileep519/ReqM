@@ -83,7 +83,7 @@ export default function Userstory() {
   //###########################     Change #######################
   const PushViewSumeery = () => {
     let path = history.location.pathname.split("addreq")[0];
-    path += "viewall/jtbd/" + id;
+    path += "viewall/" + id;
     history.push(path);
     //console.log(id);
   };

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./style.css";
 import Modal from "react-modal";
 import Button from "@material-ui/core/Button";
@@ -7,11 +7,12 @@ import { useHistory, useParams } from "react-router-dom";
 
 import { UserContext } from "./../../context/userContext/userContext";
 
-export default function Userstory() {
+export default function EditJTBD() {
+  let projectID = useParams().projectID;
+  let storyID = useParams().storyID;
   const [open, setOpen] = useState(false);
   const [user, setUser] = useContext(UserContext).user;
   const [id, setID] = useState();
-  const [priority, setPriority] = useState("Low");
   const [formData, setFormData] = useState({
     description: "",
     persona: "",
@@ -23,6 +24,7 @@ export default function Userstory() {
     watchlist: "",
     providedBy: "",
     mode: "",
+    priority: "",
   });
   const [story, setStory] = useState(1);
   const {
@@ -36,14 +38,51 @@ export default function Userstory() {
     watchlist,
     providedBy,
     mode,
+    priority,
   } = formData;
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  let projectID = useParams().projectID;
+
+  useEffect(() => {
+    getDetails();
+  }, []);
+
+  const getDetails = async () => {
+    let api =
+      "http://localhost:3001/api/jtbd/get-jtbd/projectId/" + `${projectID}`;
+    axios
+      .get(api, {
+        headers: { authtoken: `${user}` },
+      })
+      .then((res) => {
+        for (let i = 0; i < res.data.length; i++) {
+          if (res.data[i]._id === storyID) {
+            //console.log(res.data[i]);
+            let Details = {
+              description: res.data[i].JobTobeDone.description,
+              persona: res.data[i].JobTobeDone.persona,
+              situation: res.data[i].JobTobeDone.situation,
+              whatiwant: res.data[i].JobTobeDone.whatiwant,
+              soican: res.data[i].JobTobeDone.soican,
+              assignTo: res.data[i].JobTobeDone.assignTo,
+              details: res.data[i].JobTobeDone.details,
+              watchlist: res.data[i].JobTobeDone.watchlist,
+              providedBy: res.data[i].JobTobeDone.providedBy,
+              mode: res.data[i].JobTobeDone.mode,
+              priority: res.data[i].JobTobeDone.priority,
+            };
+            // console.log(Details);
+            // console.log(res.data[i].storyDetails);
+            setFormData({ ...Details });
+          }
+        }
+      });
+  };
+
   const onSubmit = async (e) => {
     e.preventDefault();
-    let api = "http://localhost:3001/api/jtbd/add-jtbd";
+    let api = "http://localhost:3001/api/jtbd/update-jtbd/" + `${storyID}`;
     let story_Details = {
       description: description,
       persona: persona,
@@ -65,7 +104,7 @@ export default function Userstory() {
       story_details: story_Details,
     };
     try {
-      let p = await axios.post(api, data, {
+      let p = await axios.put(api, data, {
         headers: {
           authtoken: `${user}`,
         },
@@ -82,8 +121,8 @@ export default function Userstory() {
 
   //###########################     Change #######################
   const PushViewSumeery = () => {
-    let path = history.location.pathname.split("addreq")[0];
-    path += "viewall/jtbd/" + id;
+    let path = history.location.pathname.split("edit")[0];
+    //path += "/viewall/jtbd/" + id;
     history.push(path);
     //console.log(id);
   };
@@ -103,7 +142,7 @@ export default function Userstory() {
     <div className="userStory__container">
       <Modal isOpen={open} className="viewSummery__modal">
         <div className="viewSummery">
-          <p>Requirement Title has been succesfully captured !!</p>
+          <p>Requirement Title has been succesfully Updated !!</p>
           <Button variant="outlined" color="primary" onClick={PushViewSumeery}>
             View Summery
           </Button>
@@ -233,19 +272,25 @@ export default function Userstory() {
                   <input
                     type="radio"
                     name="priority"
-                    onClick={() => setPriority("High")}
+                    onClick={() =>
+                      setFormData({ ...formData, priority: "High" })
+                    }
                   />
                   <b>High</b>
                   <input
                     type="radio"
                     name="priority"
-                    onClick={() => setPriority("Medium")}
+                    onClick={() =>
+                      setFormData({ ...formData, priority: "Medium" })
+                    }
                   />
                   <b>Medium</b>
                   <input
                     type="radio"
                     name="priority"
-                    onClick={() => setPriority("Low")}
+                    onClick={() =>
+                      setFormData({ ...formData, priority: "Low" })
+                    }
                   />
                   <b>Low</b>
                 </div>

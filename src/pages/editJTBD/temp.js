@@ -7,7 +7,7 @@ import { useHistory, useParams } from "react-router-dom";
 
 import { UserContext } from "./../../context/userContext/userContext";
 
-export default function Userstory() {
+export default function EditJTBD() {
   const [open, setOpen] = useState(false);
   const [user, setUser] = useContext(UserContext).user;
   const [id, setID] = useState();
@@ -41,6 +41,40 @@ export default function Userstory() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   let projectID = useParams().projectID;
+
+  useEffect(() => {
+    getDetails();
+  }, []);
+
+  const getDetails = async () => {
+    let api = "http://localhost:3001/api/jtbd/update-jtbd/" + `${projectID}`;
+    axios
+      .get(api, {
+        headers: { authtoken: `${user}` },
+      })
+      .then((res) => {
+        for (let i = 0; i < res.data.length; i++) {
+          if (res.data[i]._id === storyID) {
+            //console.log(res.data[i].storyDetails);
+            let Details = {
+              title: res.data[i].storyDetails.storyTitle,
+              role: res.data[i].storyDetails.asA,
+              want: res.data[i].storyDetails.actionRequirement,
+              soThat: res.data[i].storyDetails.actionOutput,
+              assignTo: res.data[i].storyDetails.actionAssignedTo,
+              details: res.data[i].storyDetails.details,
+              providedBy: res.data[i].storyDetails.actionProvidedBy,
+              mode: res.data[i].storyDetails.actionReceivedMode,
+              priority: res.data[i].storyDetails.priority,
+            };
+            // console.log(Details);
+            // console.log(res.data[i].storyDetails);
+            setFormData({ ...Details });
+          }
+        }
+      });
+  };
+
   const onSubmit = async (e) => {
     e.preventDefault();
     let api = "http://localhost:3001/api/jtbd/add-jtbd";
@@ -83,7 +117,7 @@ export default function Userstory() {
   //###########################     Change #######################
   const PushViewSumeery = () => {
     let path = history.location.pathname.split("addreq")[0];
-    path += "viewall/jtbd/" + id;
+    path += "viewall/" + id;
     history.push(path);
     //console.log(id);
   };
