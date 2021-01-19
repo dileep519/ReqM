@@ -3,7 +3,7 @@ import "./style.css";
 import Modal from "react-modal";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 import { UserContext } from "./../../context/userContext/userContext";
 
@@ -11,6 +11,8 @@ export default function Userstory() {
   const [open, setOpen] = useState(false);
   const [user, setUser] = useContext(UserContext).user;
   const [data, setData] = useState();
+  const [id, setID] = useState();
+
   const [formData, setFormData] = useState({
     title: "",
     role: "",
@@ -56,6 +58,7 @@ export default function Userstory() {
       details: details,
     };
 
+    //validation
     //console.log(story_Details);
     const data = {
       project_id: projectID,
@@ -67,13 +70,22 @@ export default function Userstory() {
           authtoken: `${user}`,
         },
       });
-      console.log(p);
+      setOpen(true);
+      setID(p.data.story);
+      //console.log(p.data.story);
       // /console.log(message);
     } catch (e) {
-      console.log("hello");
-      console.log(e);
+      window.alert("Something went Wrong");
     }
   };
+  let history = useHistory();
+  const PushViewSumeery = () => {
+    let path = history.location.pathname.split("addreq")[0];
+    path += "viewall/" + id;
+    history.push(path);
+    //console.log(id);
+  };
+
   let className1 = "story_1";
   let className2 = "story_2";
   //console.log(story);
@@ -90,7 +102,7 @@ export default function Userstory() {
       <Modal isOpen={open} className="viewSummery__modal">
         <div className="viewSummery">
           <p>Requirement Title has been succesfully captured !!</p>
-          <Button variant="outlined" color="primary">
+          <Button variant="outlined" color="primary" onClick={PushViewSumeery}>
             View Summery
           </Button>
         </div>
