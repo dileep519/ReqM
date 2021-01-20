@@ -9,7 +9,6 @@ import CustomerSupport from "../../shared/images/Group 2006.png";
 import bcrypt from "bcryptjs";
 import { Base64 } from "js-base64";
 import axios from "axios";
-import { makeStyles } from "@material-ui/core/styles";
 import LinearProgress from "@material-ui/core/LinearProgress";
 
 const Signup = () => {

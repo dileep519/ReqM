@@ -13,16 +13,45 @@ import "./style.css";
 const AllProjectSummary = () => {
   const [user, setUser] = useContext(UserContext).user;
   const [data, setData] = useState([]);
+  const [loged, setLoged] = useState(0);
+  const [priority, setPriority] = useState(0);
   let history = useHistory();
   useEffect(() => {
     getdata();
+    getloged();
   }, []);
 
   const getdata = async () => {
     let api = "http://localhost:3001/api/project/get-projects";
     axios.get(api, { headers: { authtoken: `${user}` } }).then((res) => {
-      //console.log(res.data);
       setData(res.data);
+    });
+  };
+
+  const getloged = async () => {
+    let api = "http://localhost:3001/api/project/get-projects";
+    axios.get(api, { headers: { authtoken: `${user}` } }).then((res) => {
+      console.log(res.data);
+      for (let i = 0; i < res.data.length; i++) {
+        let api =
+          "http://localhost:3001/api/story/get-stories/projectId/" +
+          `${res.data[i]._id}`;
+        axios
+          .get(api, {
+            headers: { authtoken: `${user}` },
+          })
+          .then((res) => {
+            //console.log(res.data);
+            if (res.data.length !== 0) setLoged(res.data.length + loged);
+            let cnt = 0;
+            if (res.data.length != 0) {
+              for (let i = 0; i < res.data.length; i++) {
+                if (res.data[i].storyDetails.priority === "High") cnt++;
+              }
+            }
+            setPriority(cnt + priority);
+          });
+      }
     });
   };
   const pushHistory = (id) => {
@@ -30,15 +59,7 @@ const AllProjectSummary = () => {
     if (path[path.length - 1] !== "/") path += "/";
     history.push(path + id);
   };
-  //  const loadUsers = async () => {
-  //    // const result = await axios.get("http://localhost:3003/users");
-  //    // setUser(result.data.reverse());
-  //  };
 
-  const deleteUser = async (id) => {
-    // await axios.delete(`http://localhost:3003/users/${id}`);
-    // loadUsers();
-  };
   const obj = {
     view: false,
   };
@@ -54,11 +75,11 @@ const AllProjectSummary = () => {
       </div>
       <div className="card-container">
         <p className="text-cordinate">Requirement Logded</p>
-        <h3 className="content-align">15</h3>
+        <h3 className="content-align">{loged}</h3>
       </div>
       <div className="card-container">
         <p className="text-cordinate">Priority Requirements</p>
-        <h3 className="content-align-p">2</h3>
+        <h3 className="content-align-p">{priority}</h3>
       </div>
 
       <h3>&nbsp; &nbsp; Active Project Spaces</h3>
@@ -66,7 +87,7 @@ const AllProjectSummary = () => {
       {}
       {data.slice(0, data.length).map((item, index) => (
         <div
-          className="card-container box-p1"
+          className={`card-container box-p${index % 2}`}
           key={index}
           onClick={() => pushHistory(item._id)}
         >

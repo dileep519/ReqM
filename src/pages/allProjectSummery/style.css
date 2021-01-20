@@ -50,7 +50,7 @@
   margin-left: auto;
   right: 20px;
 }
-.box-p1 {
+.box-p0 {
   cursor: pointer;
   background-color: #7459d9;
   position: relative;
@@ -58,6 +58,16 @@
   margin-left: auto;
   right: 20px;
 }
+
+.box-p1 {
+  cursor: pointer;
+  background-color: orange;
+  position: relative;
+  width: 30%;
+  margin-left: auto;
+  right: 20px;
+}
+
 .box-b {
   cursor: pointer;
   position: relative;
