@@ -15,9 +15,11 @@ const ParticularPageProject = () => {
   const [assignedStory, setAssignedStory] = useState(0);
   const [assignedjtbd, setAssignjtbd] = useState(0);
   let projectID = useParams().projectID;
-  //  useEffect(() => {
-  //    getuserStory();
-  //  }, [projectID]);
+  useEffect(() => {
+    getuserStory();
+    getAssignStory();
+    getAssignjtbd();
+  }, [projectID]);
 
   const getuserStory = async () => {
     let api =
@@ -54,9 +56,9 @@ const ParticularPageProject = () => {
       setAssignjtbd(res.data.length);
     });
   };
-  getAssignjtbd();
-  getAssignStory();
-  getuserStory();
+  //getAssignjtbd();
+  //getAssignStory();
+  //getuserStory();
   const PriorityHigh = (data) => {
     let cnt = 0;
     for (let i = 0; i < data.length; i++) {

@@ -21,7 +21,7 @@ const AllProjectSummary = () => {
   const getdata = async () => {
     let api = "http://localhost:3001/api/project/get-projects";
     axios.get(api, { headers: { authtoken: `${user}` } }).then((res) => {
-      console.log(res.data);
+      //console.log(res.data);
       setData(res.data);
     });
   };

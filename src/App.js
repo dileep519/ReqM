@@ -17,6 +17,8 @@ import Mysidebar from "./components/homescreen/myprojectSidebar/myprojectSidebar
 import ProjectSidebar from "./components/homescreen/projectSidebar/projectSidebar";
 import ProjectHeader from "./components/homescreen/projectHeader/projectHeader";
 import Userstory from "./pages/userStory/userStory";
+import Signup from "./components/signup/signup";
+
 import NoParticularProject from "./components/homescreen/NoParticularProjectLeft/NoParticularProject";
 //import Welcome from "./components/homescreen/welcome/welcome";
 
@@ -48,6 +50,7 @@ const App = () => {
           <Route path="/resource" component={Resources} />
           <Route path="/pricing" component={Pricing} />
           <Route path="/signin" component={Signin} />
+          <Route path="/signup" component={Signup} />
         </Switch>
       ) : (
         <div className="app__wraper">

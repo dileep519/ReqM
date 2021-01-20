@@ -1,0 +1,199 @@
+.signUpPage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  height: 100vh;
+  width: 100vw;
+  background: url("../../shared/images/Create an Account (2).png");
+  /* background-repeat: no-repeat; */
+  background-size: 100% 100%;
+}
+
+.imageContainer {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.firstHalfBody {
+  display: flex;
+  flex-direction: column;
+  margin-left: 35%;
+  justify-content: center;
+  height: 90%;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 40px;
+  /* or 167% */
+  color: #ffffff;
+}
+
+.companyName {
+  margin-left: 5%;
+  font-family: "Sunshiney", cursive;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 48px;
+  line-height: 20px;
+  margin-bottom: 10%;
+}
+
+.optionsConatiner {
+  display: flex;
+  flex-direction: column;
+}
+
+.firstHalfFooter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 10%;
+}
+
+.link-inside-container {
+  text-decoration: none;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #ffffff;
+  padding-right: 2%;
+  padding-left: 2%;
+}
+
+.signupContainer {
+  height: 100%;
+  width: 50%;
+  background: #ffffff;
+}
+
+.signupHeading {
+  margin-top: 30px;
+  margin-left: 40px;
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  color: #282c40;
+}
+
+.signUpInputContainer {
+  display: flex;
+  flex-direction: column;
+  /* width: 100%; */
+  width: 70%;
+}
+
+.signUpSubContainer {
+  margin-left: 40px;
+}
+
+.signupInput {
+  border: none;
+  border-bottom: 1px solid #ebebeb;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.inputLabel {
+  margin-top: 10px;
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  color: #82869a;
+}
+
+.signupInput:focus {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.signupImages {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  width: 70%;
+}
+
+.individualImage:hover {
+  cursor: pointer;
+}
+
+.signUpButton {
+  text-decoration: none;
+  border: none;
+  /* background: #C7E7C8; */
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  width: 60%;
+  margin-top: 20px;
+  padding: 8px;
+  background: linear-gradient(180deg, #7bb4f8 0%, #73aaeb 100%);
+  border-radius: 10px;
+  color: #ffffff;
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.signUpButton:hover {
+  cursor: pointer;
+}
+
+.signUpButton:focus {
+  /* text-decoration: none; */
+  outline: none;
+}
+
+.signUpContainer {
+  display: flex;
+  width: 70%;
+  align-items: center;
+  justify-content: center;
+}
+
+.signUpImageContainer {
+  margin-top: 10px;
+  margin-left: 40px;
+}
+
+/* 
+
+
+
+
+.signUpInfo{
+    font-family: Nunito Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 20px;
+    color: #000000;
+    margin-top: 30px;
+
+}
+
+
+.signUpProdName{
+    font-family: Sunshiney;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 48px;
+    line-height: 20px;
+    color: #000000;
+}
+
+
+
+.signUpButton:hover{
+    cursor: pointer;   
+    border: none;
+} */
