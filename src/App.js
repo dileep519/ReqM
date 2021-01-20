@@ -4,6 +4,7 @@ import {
   Switch,
   BrowserRouter as Router,
   Redirect,
+  useHistory,
 } from "react-router-dom";
 
 // components when user is null
@@ -11,6 +12,7 @@ import HomeScreen from "./components/homescreen/homescreen";
 import Products from "./components/homescreen/product/products";
 import Resources from "./components/homescreen/resources/resources";
 import Pricing from "./components/homescreen/pricing/pricing";
+//import Signup from "./components/signup/signup";
 
 // components when user is not null
 import Mysidebar from "./components/homescreen/myprojectSidebar/myprojectSidebar";
@@ -40,6 +42,14 @@ import Signin from "./components/signin/signin";
 import ProjectMembers from "./pages/ProjectMembers/ProjectMembers";
 const App = () => {
   const [user, setUser] = useContext(UserContext).user;
+  const history = useHistory();
+
+  window.onpopstate = () => {
+    const ans = window.location.href.split("myprojects");
+    if (ans.length >= 1 && ans[1].split("/").length == 2) {
+      history.push("/");
+    }
+  };
   return (
     <Router>
       {/* <Route exact path="/welcome" component={Welcome} /> */}

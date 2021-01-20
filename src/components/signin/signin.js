@@ -103,7 +103,7 @@ const Signin = () => {
               <span>Forgot Password</span>
             </div>
             <button className="singinButton" onClick={handleSignIn}>
-              Singin
+              SignIn
             </button>
           </div>
         </div>

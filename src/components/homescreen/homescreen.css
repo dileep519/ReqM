@@ -129,3 +129,7 @@
   width: fit-content;
   padding: 5px;
 }
+
+.homescreen-body-conatiner1 {
+  overflow: -moz-hidden-unscrollable;
+}
