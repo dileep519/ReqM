@@ -12,7 +12,8 @@ import HomeScreen from "./components/homescreen/homescreen";
 import Products from "./components/homescreen/product/products";
 import Resources from "./components/homescreen/resources/resources";
 import Pricing from "./components/homescreen/pricing/pricing";
-//import Signup from "./components/signup/signup";
+import Signup from "./components/signup/signup";
+import Welcome from "./components/homescreen/welcome/welcome";
 
 // components when user is not null
 import Mysidebar from "./components/homescreen/myprojectSidebar/myprojectSidebar";
@@ -21,7 +22,6 @@ import ProjectHeader from "./components/homescreen/projectHeader/projectHeader";
 import Userstory from "./pages/userStory/userStory";
 
 import NoParticularProject from "./components/homescreen/NoParticularProjectLeft/NoParticularProject";
-//import Welcome from "./components/homescreen/welcome/welcome";
 
 // resue this when there is no req left in project and he created first time project
 import CreateReq from "./components/homescreen/CreateReq/createReq";
@@ -60,6 +60,8 @@ const App = () => {
           <Route exact path="/resource" component={Resources} />
           <Route exact path="/pricing" component={Pricing} />
           <Route exact path="/signin" component={Signin} />
+          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/welcome" component={Welcome} />
           <Redirect to="/signin" />
         </Switch>
       ) : (

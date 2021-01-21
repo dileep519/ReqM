@@ -40,7 +40,7 @@ const ParticularPageProject = () => {
       email: email,
     };
     axios.post(API, Cre, { headers: { authtoken: `${user}` } }).then((res) => {
-      console.log(res.data);
+      //console.log(res.data);
       setAssignedStory(res.data.length);
     });
   };
@@ -52,7 +52,7 @@ const ParticularPageProject = () => {
       email: email,
     };
     axios.post(API, Cre, { headers: { authtoken: `${user}` } }).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       setAssignjtbd(res.data.length);
     });
   };
