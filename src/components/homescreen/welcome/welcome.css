@@ -88,14 +88,15 @@ C:\Users\hp\Desktop\reactprojects\welcomepage\public\bg.png*/
   color: #c2acff;
   font-family: Mulish;
 }
-form {
+.wlc_form {
   width: 350px;
   line-height: 1.6;
   margin-top: 15px;
   display: flex;
   flex-direction: column;
 }
-form label {
+.wlc_label {
+  color: #ffffff;
   font-family: Manrope;
   font-size: 13px;
   font-weight: 100;
@@ -121,7 +122,14 @@ form label {
   display: flex;
   align-items: flex-start;
 }
-#amu span {
+.amu_wlc_span {
+  font-family: Mulish;
+  font-size: 13px;
+  color: #ffffff;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.05em;
   margin-left: 25px;
 }
 .btn-continue {
@@ -163,7 +171,7 @@ button:hover {
 .dialog-container:focus {
   outline: none;
 }
-.dialog-container h1 {
+.wlc_collab {
   margin-top: 15px;
   font-family: Mulish;
   font-size: 16px;
@@ -213,7 +221,7 @@ button:hover {
   height: 30px;
   width: 35px;
 }
-.add-container span {
+.wlc_span {
   font-family: Mulish;
   font-size: 13px;
   color: black;
@@ -222,7 +230,7 @@ button:hover {
   line-height: 24px;
   letter-spacing: 0.05em;
   text-align: center;
-  margin-left: px;
+  margin-left: 54px;
   background: white;
 }
 .dialog-container #switch {

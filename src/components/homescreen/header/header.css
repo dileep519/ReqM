@@ -1,4 +1,4 @@
-.header-container{
+.home_header-container{
     display: flex;
     flex-direction: row;
     /* position: fixed; */
@@ -9,7 +9,7 @@
     padding:5px;
 }
 
-.reqm-container{
+.home_reqm-container{
     display: flex;
     justify-content: flex-start;
     font-family: Sunshine;
@@ -20,7 +20,7 @@
     width: 60%;
 }
 
-.link-container{
+.home_link-container{
     display: flex;
     width: 40%;
     font-family: Nunito Sans;
@@ -33,7 +33,7 @@
     justify-content: space-evenly;
 }
 
-.link-inside-container{
+.home_link-inside-container{
     text-decoration: none;
     font-family: Nunito Sans;
     font-style: normal;
@@ -43,7 +43,7 @@
     color:#111010;
 }
 
-.link-container-button{
+.home_link-container-button{
     padding: 5px;
     border: 2px solid #070707;
     box-sizing: border-box;

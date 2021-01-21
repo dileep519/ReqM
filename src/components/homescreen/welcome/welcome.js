@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import "./welcome.css";
-import PersonAddIcon from "@material-ui/icons/PersonAdd";
+import WelcomePersonAddIcon from "@material-ui/icons/PersonAdd";
 import Modal from "@material-ui/core/Modal";
-import AddBoxIcon from "@material-ui/icons/AddBox";
+import WelcomeAddBoxIcon from "@material-ui/icons/AddBox";
 import {
   SettingsApplicationsRounded,
   SettingsInputAntenna,
@@ -177,11 +177,11 @@ function Welcome() {
       {input ? renderInput : <div></div>}
       <div className="add-container">
         <div id="addicon" onClick={handleAddOnModal}>
-          <AddBoxIcon />
+          <WelcomeAddBoxIcon />
         </div>
-        <span>Add More Members</span>
+        <span className="wlc_span">Add More Members</span>
       </div>
-      <h1>Collaborators can</h1>
+      <h1 className="wlc_collab">Collaborators can</h1>
       <div id="switch">
         <span style={{ color: "black" }}>Add more people</span>
         {/*switch button here*/}
@@ -223,8 +223,8 @@ function Welcome() {
           <h1>Welcome Divesh!</h1>
           <h3>Add a new Project and Maintain Requirements Within</h3>
         </div>
-        <form action="">
-          <label for="orgname">Organisation Name</label>
+        <form className="wlc_form" action="">
+          <label className="wlc_label" for="orgname">Organisation Name</label>
 
           <input
             className="fieldinput"
@@ -236,7 +236,7 @@ function Welcome() {
             value={orgname}
           />
 
-          <label for="projname">Project Name</label>
+          <label className="wlc_label" for="projname">Project Name</label>
 
           <input
             className="fieldinput"
@@ -250,8 +250,8 @@ function Welcome() {
 
           <section id="amu">
             {/*<p>{isDialogOpen}</p>*/}
-            <PersonAddIcon onClick={handleAddOnMain} />
-            <span>Add More Users</span>
+            <WelcomePersonAddIcon onClick={handleAddOnMain} />
+            <span className="amu_wlc_span">Add More Users</span>
             <Modal open={open} onClose={handleClose} style={customStyles}>
               {body}
             </Modal>

@@ -53,6 +53,7 @@ const App = () => {
   return (
     <Router>
       {/* <Route exact path="/welcome" component={Welcome} /> */}
+      <Route exact path="/welcome" component={Welcome} />
       {user === null ? (
         <Switch>
           <Route exact path="/" component={HomeScreen} />
@@ -61,7 +62,6 @@ const App = () => {
           <Route exact path="/pricing" component={Pricing} />
           <Route exact path="/signin" component={Signin} />
           <Route exact path="/signup" component={Signup} />
-          <Route exact path="/welcome" component={Welcome} />
           <Redirect to="/signin" />
         </Switch>
       ) : (

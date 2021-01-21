@@ -4,13 +4,13 @@ import './header.css';
 
 const Header=()=>{
     return(
-        <div className="header-container">
-            <div className="reqm-container">ReqM !</div>
-            <div className="link-container">
-               <NavLink to="/product" className="link-inside-container">Product</NavLink>
-               <NavLink to="/resource" className="link-inside-container">Resources</NavLink>
-               <NavLink to="/pricing" className="link-inside-container">Pricing</NavLink>
-               <NavLink to="/signin" className="link-container-button link-inside-container">Sign In</NavLink>
+        <div className="home_header-container">
+            <div className="home_reqm-container">ReqM !</div>
+            <div className="home_link-container">
+               <NavLink to="/product" className="home_link-inside-container">Product</NavLink>
+               <NavLink to="/resource" className="home_link-inside-container">Resources</NavLink>
+               <NavLink to="/pricing" className="home_link-inside-container">Pricing</NavLink>
+               <NavLink to="/signin" className="home_link-container-button home_link-inside-container">Sign In</NavLink>
             </div>
         </div>
     );
