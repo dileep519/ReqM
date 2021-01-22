@@ -20,22 +20,58 @@ const ProjectMembers = () => {
   }, []);
 
   const getNames = async () => {
-    let api = "http://localhost:3001/api/project/get-projects";
-    axios
-      .get(api, {
-        headers: { authtoken: `${user}` },
-      })
+    let api = "http://localhost:3001/api/project/get-all-projects";
+    let NAMES = [];
+    try {
+      let res = await axios.get(api, { headers: { authtoken: `${user}` } });
+      // iterating over all projects
+      for (let i = 0; i < res.data.length; i++) {
+        if (projectID === res.data[i]._id) {
+          let useAsso = res.data[i].usersAssociated;
+          //  console.log(useAsso);
+          try {
+            let allusers = await axios.get(
+              "http://localhost:3001/api/user/get-all-users",
+              {
+                headers: { authtoken: `${user}` },
+              }
+            );
+            // console.log(allusers);
+            for (let j = 0; j < useAsso.length; j++) {
+              for (let k = 0; k < allusers.data.length; k++) {
+                if (useAsso[j] == allusers.data[k].email) {
+                  NAMES.push(allusers.data[k].name);
+                  break;
+                }
+              }
+            }
+          } catch (error) {
+            window.alert(error);
+            history.push("/");
+          }
+        }
+      }
+      console.log(NAMES);
+      setData(NAMES);
+    } catch (error) {
+      window.alert(error);
+      history.push("/");
+    }
+
+    /* 
       .then((res) => {
         //console.log(res.data);
         for (let i = 0; i < res.data.length; i++) {
-          if (projectID === res.data[i]._id)
+          if (projectID === res.data[i]._id){
             setData(res.data[i].usersAssociated);
+          }
         }
       })
       .catch((e) => {
         window.alert(e);
         history.push("/");
       });
+      */
   };
   const obj = {
     view: false,

@@ -105,7 +105,7 @@ export default function Userstory() {
         <div className="viewSummery">
           <p>Requirement Title has been succesfully captured !!</p>
           <Button variant="outlined" color="primary" onClick={PushViewSumeery}>
-            View Summery
+            View Summary
           </Button>
         </div>
       </Modal>

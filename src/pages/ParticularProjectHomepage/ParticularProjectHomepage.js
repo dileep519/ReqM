@@ -12,21 +12,79 @@ import { UserContext } from "./../../context/userContext/userContext";
 const ParticularPageProject = () => {
   const [user, setUser] = useContext(UserContext).user;
   const [data, setData] = useState([]);
-  const [assignedStory, setAssignedStory] = useState(0);
-  const [assignedjtbd, setAssignjtbd] = useState(0);
-  const [loged, setLoged] = useState(0);
   const [priority, setPriority] = useState(0);
-  const [jtbdloged, setJtbdloged] = useState(0);
-  const [jtbdpriority, setJtbdPriority] = useState(0);
+  const [assigned, setAssigned] = useState(0);
+  const [loged, setLoged] = useState(0);
+
+  //  const [assignedStory, setAssignedStory] = useState(0);
+  //  const [assignedjtbd, setAssignjtbd] = useState(0);
+  //  const [loged, setLoged] = useState(0);
+  //  const [priority, setPriority] = useState(0);
+  //  const [jtbdloged, setJtbdloged] = useState(0);
+  //  const [jtbdpriority, setJtbdPriority] = useState(0);
+  //  const [pri, setPri] = useState(0);
+  //  const [assi, setAssi] = useState(0);
+
   let projectID = useParams().projectID;
-  useEffect(() => {
-    getuserStory();
-    getAssignStory();
-    getAssignjtbd();
-    getloged();
-    getjtbd();
+  useEffect(async () => {
+    //getuserStory();
+    //getAssignStory();
+    //getAssignjtbd();
+    //getloged();
+    //getjtbd();
+    //// get Assin();
+    //getAssin();
+    getAll();
   }, [projectID]);
 
+  const getAll = async () => {
+    let email = JSON.parse(localStorage.getItem("email"));
+    let len1 = 0;
+    let len2 = 0;
+    let p = 0;
+    let tome = 0;
+    let api1 =
+      "http://localhost:3001/api/story/get-stories/projectId/" + `${projectID}`; // this is to get all userstory created by user
+    let api2 =
+      "http://localhost:3001/api/jtbd/get-jtbd/projectId/" + `${projectID}`; // this is to get all jtbd created by user
+
+    // getting all the project stories by project ID;
+    try {
+      let userStorys = await axios.get(api1, {
+        headers: { authtoken: `${user}` },
+      });
+      let userjtbds = await axios.get(api2, {
+        headers: { authtoken: `${user}` },
+      });
+
+      len1 = userStorys.data.length;
+      len2 = userjtbds.data.length;
+
+      // getting all the priority and assignTome of userstorys
+      for (let i = 0; i < userStorys.data.length; i++) {
+        if (userStorys.data[i].storyDetails.priority === "High") p++;
+        if (userStorys.data[i].storyDetails.actionAssignedTo === email) tome++;
+      }
+      // getting all the priority and assignTome of jtbd
+      for (let i = 0; i < userjtbds.data.length; i++) {
+        if (userjtbds.data[i].JobTobeDone.priority === "High") p++;
+        if (userjtbds.data[i].JobTobeDone.actionAssignedTo === email) tome++;
+      }
+
+      setData(userStorys.data);
+      setPriority(p);
+      setAssigned(tome);
+      setLoged(len1 + len2);
+
+      //console.log(userStorys);
+      //console.log(userjtbds);
+    } catch (error) {
+      window.alert(error);
+      history.push("/");
+    }
+  };
+
+  /*
   const getuserStory = async () => {
     let api =
       "http://localhost:3001/api/story/get-stories/projectId/" + `${projectID}`;
@@ -119,6 +177,54 @@ const ParticularPageProject = () => {
       setAssignjtbd(res.data.length);
     });
   };
+
+  const getAssin = async () => {
+    let len1 = 0;
+    let len2 = 0;
+    let p = 0;
+    let api1 = "http://localhost:3001/api/jtbd/get-jtbd/userid/123"; // this is to get all jtbd created by user
+    let api2 = "http://localhost:3001/api/story/get-stories/userid/123"; // this is to get all userstory created by user
+    // get all the jtbd created by user
+
+    try {
+      let res1 = await axios.get(api1, {
+        headers: { authtoken: `${user}` },
+      });
+      for (let i = 0; i < res1.data.length; i++) {
+        if (res1.data[i].projectId === projectID) {
+          // getting all the priority
+          if (res1.data[i].JobTobeDone.priority === "High") p++;
+          // getting all jtbd
+          len1++;
+        }
+      }
+    } catch (error) {
+      window.alert(error);
+      history.push("/");
+      return;
+    }
+    try {
+      let res2 = await axios.get(api2, {
+        headers: { authtoken: `${user}` },
+      });
+      for (let i = 0; i < res2.data.length; i++) {
+        if (res2.data[i].projectId === projectID) {
+          // getting all the priority
+          if (res2.data[i].JobTobeDone.priority === "High") p++;
+          // getting all jtbd
+          len2++;
+        }
+      }
+    } catch (error) {
+      window.alert(error);
+      history.push("/");
+      return;
+    }
+
+    setPri(p);
+    setAssi(len1 + len2);
+  };
+
   //getAssignjtbd();
   //getAssignStory();
   //getuserStory();
@@ -130,7 +236,7 @@ const ParticularPageProject = () => {
 
     return cnt;
   };
-
+*/
   const obj = {
     view: false,
   };
@@ -176,15 +282,17 @@ const ParticularPageProject = () => {
       <div className="card__container__wraper">
         <div className="card-container">
           <p className="text-cordinate">Requirements Logded</p>
-          <h3 className="content-align">{loged + jtbdloged}</h3>
+          <h3 className="content-align">{/*loged + jtbdloged*/ loged}</h3>
         </div>
         <div className="card-container">
           <p className="text-cordinate">Priority Requirement</p>
-          <h3 className="content-align-p">{priority + jtbdpriority}</h3>
+          <h3 className="content-align-p">
+            {/*priority + jtbdpriority*/ priority}
+          </h3>
         </div>
         <div className="card-container">
           <p className="text-cordinate">Assigned To Me</p>
-          <h3 className="content-align">{assignedStory + assignedjtbd}</h3>
+          <h3 className="content-align">{/*assi*/ assigned}</h3>
         </div>
       </div>
       <div className="table-data">

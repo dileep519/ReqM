@@ -137,7 +137,7 @@ export default function EditUserstory() {
         <div className="viewSummery">
           <p>Requirement Title has been succesfully Updated !!</p>
           <Button variant="outlined" color="primary" onClick={PushViewSumeery}>
-            View Summery
+            View Summary
           </Button>
         </div>
       </Modal>
