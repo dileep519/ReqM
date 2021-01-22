@@ -17,7 +17,7 @@ const Header = () => {
           Pricing
         </NavLink>
         <NavLink
-          to="/signin"
+          to="/signup"
           className="home_link-container-button home_link-inside-container"
         >
           Sign Up

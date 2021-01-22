@@ -56,6 +56,7 @@ const App = () => {
     <Router>
       {/* <Route exact path="/welcome" component={Welcome} /> */}
       <Route exact path="/welcome" component={Welcome} />
+      <Route exact path="/error" component={Error} />
       {user === null ? (
         <Switch>
           <Route exact path="/" component={HomeScreen} />

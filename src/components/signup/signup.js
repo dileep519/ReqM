@@ -235,7 +235,7 @@ const Signup = () => {
             </div>
             <div className="signUpContainer">
               <button className="signUpButton" onClick={handleSignup}>
-                Sing Up
+                Sign Up
               </button>
             </div>
           </div>
