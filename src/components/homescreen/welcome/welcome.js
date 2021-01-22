@@ -58,7 +58,7 @@ function Welcome() {
       //console.log(orgname + " " + projname + " " + users);
       //routing to the projects space page
       let name = NAMES;
-      let Name = JSON.parse(localStorage.getItem("Name"));
+      let Name = JSON.parse(localStorage.getItem("email"));
       name.push(Name);
       console.log(Name);
       let data = {
@@ -114,7 +114,7 @@ function Welcome() {
   const onSaveClick = () => {
     handleClose();
     let names = NAMES;
-    names.push(email);
+    if (email.length > 0) names.push(email);
     setEmail("");
     SETNAMES(NAMES);
     //console.log(orgname + " " + projname + " " + email + " pokemon");
@@ -196,7 +196,7 @@ function Welcome() {
   });
   const renderInput = (
     <div className="input-container">
-      <span>Enter Name</span>
+      <span>Enter email id</span>
       <input
         type="text"
         name="email"

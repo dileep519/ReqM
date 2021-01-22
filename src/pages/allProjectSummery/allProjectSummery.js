@@ -14,28 +14,90 @@ const AllProjectSummary = () => {
   const [user, setUser] = useContext(UserContext).user;
   const [data, setData] = useState([]);
   const [loged, setLoged] = useState(0);
-  const [priority, setPriority] = useState(0);
   const [jtbdloged, setJtbdloged] = useState(0);
   const [jtbdpriority, setJtbdPriority] = useState(0);
+
+  const [totalloged, setTotalLoged] = useState(0);
+  const [priority, setPriority] = useState(0);
 
   let history = useHistory();
   useEffect(async () => {
     getdata();
-    getloged();
-    getjtbd();
+    //getloged();
+    //getjtbd();
+    getTotalLoged();
   }, []);
 
   const getdata = async () => {
-    let api = "http://localhost:3001/api/project/get-projects";
+    let api = "http://localhost:3001/api/project/get-all-projects";
+    let projects = [];
     try {
       let res = await axios.get(api, { headers: { authtoken: `${user}` } });
-      setData(res.data);
+      // console.log(res.data);
+
+      let data = res.data;
+      let email = JSON.parse(localStorage.getItem("email"));
+      //console.log(email);
+      //console.log(res.data[0]);
+      for (let i = 0; i < data.length; i++) {
+        let EMAILS = data[i].usersAssociated;
+        // console.log(EMAILS);
+        for (let j = 0; j < EMAILS.length; j++) {
+          if (EMAILS[j] === email) {
+            projects.push(data[i]);
+            break;
+          }
+        }
+      }
+      //console.log(projects);
+      setData(projects);
     } catch (error) {
       history.push("/error");
-      window.alert("The server is not working!!");
+      window.alert(error);
     }
   };
 
+  // to get all the length of all userStory and jtbd
+  const getTotalLoged = async () => {
+    let len1 = 0;
+    let len2 = 0;
+    let p = 0;
+    let api1 = "http://localhost:3001/api/jtbd/get-jtbd/userid/123"; // this is to get all jtbd created by user
+    let api2 = "http://localhost:3001/api/story/get-stories/userid/123"; // this is to get all userstory created by user
+    // get all the jtbd created by user
+
+    try {
+      let res1 = await axios.get(api1, {
+        headers: { authtoken: `${user}` },
+      });
+      for (let i = 0; i < res1.data.length; i++) {
+        if (res1.data[i].JobTobeDone.priority === "High") p++;
+      }
+
+      len1 = res1.data.length;
+    } catch (error) {
+      window.alert("Server is not working");
+      history.push("/");
+      return;
+    }
+    try {
+      let res2 = await axios.get(api2, {
+        headers: { authtoken: `${user}` },
+      });
+      len2 = res2.data.length;
+      for (let i = 0; i < res2.data.length; i++) {
+        if (res2.data[i].storyDetails.priority === "High") p++;
+      }
+    } catch (error) {
+      window.alert("Server is not working");
+      history.push("/");
+      return;
+    }
+    setTotalLoged(len1 + len2);
+    setPriority(p);
+  };
+
+  /*
   const getloged = async () => {
     let api = "http://localhost:3001/api/project/get-projects";
     try {
@@ -44,6 +106,7 @@ const AllProjectSummary = () => {
       let cnt = 0;
       let story = 0;
       for (let i = 0; i < res.data.length; i++) {
+        // ######### user iDS
         let apis =
           "http://localhost:3001/api/story/get-stories/projectId/" +
           `${res.data[i]._id}`;
@@ -108,6 +171,8 @@ const AllProjectSummary = () => {
       return;
     }
   };
+
+*/
   const pushHistory = (id) => {
     let path = history.location.pathname;
     if (path[path.length - 1] !== "/") path += "/";
@@ -129,7 +194,7 @@ const AllProjectSummary = () => {
       </div>
       <div className="card-container">
         <p className="text-cordinate">Requirement Logded</p>
-        <h3 className="content-align">{loged + jtbdloged}</h3>
+        <h3 className="content-align">{totalloged}</h3>
       </div>
       <div className="card-container">
         <p className="text-cordinate">Priority Requirements</p>
@@ -138,7 +203,7 @@ const AllProjectSummary = () => {
 
       <h3>&nbsp; &nbsp; Active Project Spaces</h3>
       {/* this thing will come from map and we need to click onClick on that*/}
-      {}
+
       {data.slice(0, data.length).map((item, index) => (
         <div
           className={`card-container box-p${index % 2}`}

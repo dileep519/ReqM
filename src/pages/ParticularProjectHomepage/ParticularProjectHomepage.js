@@ -21,8 +21,8 @@ const ParticularPageProject = () => {
   let projectID = useParams().projectID;
   useEffect(() => {
     getuserStory();
-    //getAssignStory();
-    //getAssignjtbd();
+    getAssignStory();
+    getAssignjtbd();
     getloged();
     getjtbd();
   }, [projectID]);
@@ -96,7 +96,6 @@ const ParticularPageProject = () => {
     setJtbdPriority(cnt);
   };
 
-  /*
   const getAssignStory = () => {
     let email = JSON.parse(localStorage.getItem("email"));
     let API = "http://localhost:3001/api/story/get-all-assigned";
@@ -131,7 +130,7 @@ const ParticularPageProject = () => {
 
     return cnt;
   };
-*/
+
   const obj = {
     view: false,
   };
