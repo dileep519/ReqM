@@ -31,6 +31,10 @@ const ProjectMembers = () => {
           if (projectID === res.data[i]._id)
             setData(res.data[i].usersAssociated);
         }
+      })
+      .catch((e) => {
+        window.alert(e);
+        history.push("/");
       });
   };
   const obj = {

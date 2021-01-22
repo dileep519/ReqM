@@ -32,6 +32,10 @@ export default function ViewSummery() {
             setData(res.data[i].storyDetails);
           }
         }
+      })
+      .catch((e) => {
+        window.alert(e);
+        history.push("/");
       });
   };
   //console.log(data);

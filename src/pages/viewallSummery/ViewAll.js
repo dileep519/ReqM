@@ -29,6 +29,10 @@ const ViewAll = () => {
       .then((res) => {
         console.log(res.data);
         setData(res.data);
+      })
+      .catch((e) => {
+        window.alert(e);
+        history.push("/");
       });
   };
 
@@ -42,6 +46,10 @@ const ViewAll = () => {
       .then((res) => {
         console.log(res.data);
         setDatajtbd(res.data);
+      })
+      .catch((e) => {
+        window.alert(e);
+        history.push("/");
       });
   };
   const historyView = (id, name) => {
