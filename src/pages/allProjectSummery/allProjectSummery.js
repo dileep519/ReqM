@@ -96,6 +96,7 @@ const AllProjectSummary = () => {
         } catch (error) {
           window.alert("Server is not Working");
           history.push("/error");
+          return;
         }
       }
 
@@ -104,6 +105,7 @@ const AllProjectSummary = () => {
     } catch (error) {
       window.alert("Server is not Working");
       history.push("/error");
+      return;
     }
   };
   const pushHistory = (id) => {
@@ -148,7 +150,12 @@ const AllProjectSummary = () => {
       ))}
 
       <div className="card-container">
-        <div className="box-b">
+        <div
+          className="box-b"
+          onClick={() => {
+            history.push("/welcome");
+          }}
+        >
           <h2 style={hStyle}>
             <IconContext.Provider
               value={{

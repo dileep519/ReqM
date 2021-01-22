@@ -45,9 +45,11 @@ const App = () => {
   const history = useHistory();
 
   window.onpopstate = () => {
-    const ans = window.location.href.split("myprojects");
-    if (ans.length >= 1 && ans[1].split("/").length == 2) {
-      history.push("/");
+    if (user !== null) {
+      const ans = window.location.href.split("myprojects");
+      if (ans.length >= 1 && ans[1].split("/").length == 2) {
+        history.push("/");
+      }
     }
   };
   return (
