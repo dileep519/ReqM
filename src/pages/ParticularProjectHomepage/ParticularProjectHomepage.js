@@ -14,11 +14,17 @@ const ParticularPageProject = () => {
   const [data, setData] = useState([]);
   const [assignedStory, setAssignedStory] = useState(0);
   const [assignedjtbd, setAssignjtbd] = useState(0);
+  const [loged, setLoged] = useState(0);
+  const [priority, setPriority] = useState(0);
+  const [jtbdloged, setJtbdloged] = useState(0);
+  const [jtbdpriority, setJtbdPriority] = useState(0);
   let projectID = useParams().projectID;
   useEffect(() => {
     getuserStory();
-    getAssignStory();
-    getAssignjtbd();
+    //getAssignStory();
+    //getAssignjtbd();
+    getloged();
+    getjtbd();
   }, [projectID]);
 
   const getuserStory = async () => {
@@ -31,8 +37,66 @@ const ParticularPageProject = () => {
       .then((res) => {
         //console.log(res.data);
         setData(res.data);
+      })
+      .catch((error) => {
+        history.push("/error");
+        window.alert("Server is not Working!!");
       });
   };
+  const getloged = async () => {
+    let cnt = 0;
+    let story = 0;
+    let apis =
+      "http://localhost:3001/api/story/get-stories/projectId/" + `${projectID}`;
+    try {
+      let res2 = await axios.get(apis, {
+        headers: { authtoken: `${user}` },
+      });
+
+      //if (res.data.length !== 0) setLoged(res.data.length + loged);
+      story += Number(res2.data.length);
+      for (let i = 0; i < res2.data.length; i++) {
+        if (res2.data[i].storyDetails.priority === "High") cnt++;
+      }
+    } catch (error) {
+      history.push("/error");
+      window.alert("Server is not Working");
+    }
+
+    //console.log(cnt);
+    //console.log(story);
+    setPriority(cnt);
+    setLoged(story);
+  };
+
+  const getjtbd = async () => {
+    let api = "http://localhost:3001/api/project/get-projects";
+
+    let cnt = 0;
+    let story = 0;
+
+    let apis =
+      "http://localhost:3001/api/jtbd/get-jtbd/projectId/" + `${projectID}`;
+    try {
+      let res2 = await axios.get(apis, {
+        headers: { authtoken: `${user}` },
+      });
+
+      //if (res.data.length !== 0) setLoged(res.data.length + loged);
+      story += Number(res2.data.length);
+      for (let i = 0; i < res2.data.length; i++) {
+        if (res2.data[i].JobTobeDone.priority === "High") cnt++;
+      }
+    } catch (error) {
+      history.push("/error");
+      window.alert("Server is not Working");
+    }
+
+    setJtbdloged(story);
+    setJtbdPriority(cnt);
+  };
+
+  /*
   const getAssignStory = () => {
     let email = JSON.parse(localStorage.getItem("email"));
     let API = "http://localhost:3001/api/story/get-all-assigned";
@@ -67,7 +131,7 @@ const ParticularPageProject = () => {
 
     return cnt;
   };
-
+*/
   const obj = {
     view: false,
   };
@@ -113,11 +177,11 @@ const ParticularPageProject = () => {
       <div className="card__container__wraper">
         <div className="card-container">
           <p className="text-cordinate">Requirements Logded</p>
-          <h3 className="content-align">{data.length}</h3>
+          <h3 className="content-align">{loged + jtbdloged}</h3>
         </div>
         <div className="card-container">
           <p className="text-cordinate">Priority Requirement</p>
-          <h3 className="content-align-p">{PriorityHigh(data)}</h3>
+          <h3 className="content-align-p">{priority + jtbdpriority}</h3>
         </div>
         <div className="card-container">
           <p className="text-cordinate">Assigned To Me</p>

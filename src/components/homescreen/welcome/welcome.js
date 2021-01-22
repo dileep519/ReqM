@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import "./welcome.css";
 import WelcomePersonAddIcon from "@material-ui/icons/PersonAdd";
 import Modal from "@material-ui/core/Modal";
+import axios from "axios";
 import WelcomeAddBoxIcon from "@material-ui/icons/AddBox";
 import {
   SettingsApplicationsRounded,
@@ -14,10 +15,13 @@ import { withStyles } from "@material-ui/core/styles";
 import Swal from "sweetalert2";
 import validator from "validator";
 import { UserContext } from "./../../../context/userContext/userContext";
+import { useHistory } from "react-router-dom";
 function Welcome() {
+  let history = useHistory();
   const [projname, setProjName] = useState("");
   const [orgname, setOrgName] = useState("");
   const [email, setEmail] = useState("");
+  const [NAMES, SETNAMES] = useState([]);
   const [open, setOpen] = useState(false);
   const [input, showInput] = useState(true);
   const [checked, setChecked] = useState(false);
@@ -34,7 +38,7 @@ function Welcome() {
     //orgname+""+projname);
   };
   const toggleChecked = () => {
-    console.log("git push show");
+    // console.log("git push show");
     setChecked((prev) => !prev);
   };
   const handleOpen = () => {
@@ -45,19 +49,45 @@ function Welcome() {
     setEmail("");
     setOpen(false);
   };
-  const handleContinue = () => {
+  // this is the continue  ######################################################################
+  const handleContinue = async (e) => {
     //console.log(projname+" "+orgname);
-    if (!projname || !orgname) console.log("input both the fields");
+    e.preventDefault();
+    if (!projname || !orgname) window.alert("input both the fields");
     else {
-      console.log(orgname + " " + projname + " " + users);
+      //console.log(orgname + " " + projname + " " + users);
       //routing to the projects space page
+      let name = NAMES;
+      let Name = JSON.parse(localStorage.getItem("Name"));
+      name.push(Name);
+      console.log(Name);
+      let data = {
+        organization_name: orgname,
+        project_name: projname,
+        associated_users_list: NAMES,
+      };
+      let api = "http://localhost:3001/api/project/add-project";
+
+      try {
+        let p = await axios.post(api, data, {
+          headers: {
+            authtoken: `${users}`,
+          },
+        });
+
+        history.push("/myprojects");
+      } catch (error) {
+        window.alert(error);
+      }
+      // console.log(NAMES);
     }
   };
   const handleEnter = (event) => {
     if (event.key == "Enter") {
       if (validator.isEmail(email)) {
         //validate
-        setUsers(users.concat(email));
+        // setUsers(users.concat(email));
+        console.log(email);
         setEmail("");
         showInput(false);
         console.log("in handle Enter func " + users);
@@ -83,10 +113,15 @@ function Welcome() {
   };
   const onSaveClick = () => {
     handleClose();
-    console.log(orgname + " " + projname + " " + users);
+    let names = NAMES;
+    names.push(email);
+    setEmail("");
+    SETNAMES(NAMES);
+    //console.log(orgname + " " + projname + " " + email + " pokemon");
   };
   const handleAddOnModal = () => {
     if (input == false) {
+      console.log("hello");
       showInput(true);
     } else {
       Swal.fire({
@@ -161,7 +196,7 @@ function Welcome() {
   });
   const renderInput = (
     <div className="input-container">
-      <span>Input Email Id</span>
+      <span>Enter Name</span>
       <input
         type="text"
         name="email"
@@ -175,16 +210,18 @@ function Welcome() {
   const body = (
     <div className="dialog-container">
       {input ? renderInput : <div></div>}
+      {/*
       <div className="add-container">
         <div id="addicon" onClick={handleAddOnModal}>
           <WelcomeAddBoxIcon />
         </div>
+
         <span className="wlc_span">Add More Members</span>
       </div>
       <h1 className="wlc_collab">Collaborators can</h1>
       <div id="switch">
         <span style={{ color: "black" }}>Add more people</span>
-        {/*switch button here*/}
+        {//switch button here}
         <FormControlLabel
           className="btn-switch"
           control={
@@ -196,6 +233,8 @@ function Welcome() {
           }
         />
       </div>
+      
+        */}
       <div className="btn-save">
         <button className="save-btn" onClick={onSaveClick}>
           {" "}
@@ -224,7 +263,9 @@ function Welcome() {
           <h3>Add a new Project and Maintain Requirements Within</h3>
         </div>
         <form className="wlc_form" action="">
-          <label className="wlc_label" for="orgname">Organisation Name</label>
+          <label className="wlc_label" for="orgname">
+            Organisation Name
+          </label>
 
           <input
             className="fieldinput"
@@ -236,7 +277,9 @@ function Welcome() {
             value={orgname}
           />
 
-          <label className="wlc_label" for="projname">Project Name</label>
+          <label className="wlc_label" for="projname">
+            Project Name
+          </label>
 
           <input
             className="fieldinput"
@@ -256,7 +299,7 @@ function Welcome() {
               {body}
             </Modal>
           </section>
-          <button className="btn-continue" onClick={handleContinue}>
+          <button className="btn-continue" onClick={(e) => handleContinue(e)}>
             Continue
           </button>
         </form>

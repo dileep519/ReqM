@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import validator from "validator";
 import "./signup.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 import ProductSquad from "../../shared/images/Group 2004.png";
 import Business from "../../shared/images/Group 2005.png";
@@ -12,6 +12,7 @@ import axios from "axios";
 import LinearProgress from "@material-ui/core/LinearProgress";
 
 const Signup = () => {
+  let history = useHistory();
   const [name, setName] = useState(() => "");
   const [email, setEmail] = useState();
   const [password, setPassword] = useState(() => "");
@@ -83,6 +84,8 @@ const Signup = () => {
                 text: `${res.data.message}`,
                 icon: "success",
               });
+              history.push("/signin");
+              // push history
             } else {
               Swal.fire({
                 title: "Error",
