@@ -18,7 +18,7 @@
 
 ![View All Requirements(1)](https://user-images.githubusercontent.com/53661347/121055640-117b7180-c7db-11eb-9bb9-3c25b75fcb6c.jpg)
 
-![View All Requirements(3)](https://user-images.githubusercontent.com/53661347/121055878-4687c400-c7db-11eb-81b0-7a1560cd79a7.jpg)
+
 
 
 
